@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>First steps :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/trino/stable/getting_started/first_steps.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="trino" data-version="0.7">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../index.html">Stackable Operator for Trino</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">0.7</button>
+        <div class="version-menu">
+          <a class="version" href="../../nightly/getting_started/first_steps.html">nightly</a>
+          <a class="version" href="../../stable/getting_started/first_steps.html">0.8</a>
+          <a class="version is-current" href="first_steps.html">0.7</a>
+          <a class="version" href="../../0.6/getting_started/first_steps.html">0.6</a>
+          <a class="version" href="../../0.5/getting_started/first_steps.html">0.5</a>
+          <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+          <a class="version is-missing" href="../../0.3/index.html">0.3</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="first_steps.html">First steps</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../concepts.html">Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../usage_guide/index.html">Usage guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../usage_guide/security.html">Security considerations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../usage_guide/catalogs.html">Using Catalogs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../usage_guide/cluster.html">Creating a Trino cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../usage_guide/configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../usage_guide/monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../usage_guide/query.html">Testing Trino with Hive and S3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Operator for Trino</span>
+    <span class="version">0.7</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../stable/index.html">0.8</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Stackable Operator for Trino</a></li>
+    <li><a href="index.html">Getting started</a></li>
+    <li><a href="first_steps.html">First steps</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/trino-operator/blob/docs/0.7/docs/modules/getting_started/pages/first_steps.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">First steps</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>After going through the <a href="installation.html" class="xref page">Installation</a> section and having installed all the operators, you will now deploy a Trino cluster and the required dependencies. Afterwards you can <a href="#_verify_that_it_works">verify that it works</a> by running some queries against Trino or visit the Trino web interface.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup_trino"><a class="anchor" href="#_setup_trino"></a>Setup Trino</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A working Trino cluster and its web interface require only the commons and secret operators to work. Simple tests are possible without an external data source (e.g. PostgreSQL, Hive or S3), as internal data can be used.</p>
+</div>
+<div class="paragraph">
+<p>Create a file named <code>trino.yaml</code> with the following content:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCluster
+metadata:
+  name: simple-trino
+spec:
+  version: 396-stackable0.1.0
+  catalogLabelSelector:
+    matchLabels:
+      trino: simple-trino
+  coordinators:
+    roleGroups:
+      default:
+        replicas: 1
+  workers:
+    roleGroups:
+      default:
+        replicas: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and apply it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f trino.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the Trino cluster to get ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl rollout status --watch statefulset/simple-trino-coordinator-default
+kubectl rollout status --watch statefulset/simple-trino-worker-default</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_that_it_works"><a class="anchor" href="#_verify_that_it_works"></a>Verify that it works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At first, make sure the StatefulSets are ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get statefulset</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should show all pods in the StatefulSets ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">NAME                                 READY   AGE
+simple-trino-coordinator-default     1/1     5m
+simple-trino-worker-default          1/1     5m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a port-forward for the coordinator to access Trino easily in the next steps:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl port-forward svc/simple-trino-coordinator 8443 2&gt;&amp;1 &gt;/dev/null &amp;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_the_trino_cluster_via_cli_tool"><a class="anchor" href="#_access_the_trino_cluster_via_cli_tool"></a>Access the Trino cluster via CLI tool</h3>
+<div class="paragraph">
+<p>We use the <a href="https://trino.io/download.html">Trino CLI tool</a> to access the Trino cluster. This link points to the latest Trino version. In this guide we keep Trino cluster and client versions in sync and download the CLI tool from the <a href="https://repo.stackable.tech/">Stackable repository</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --output trino.jar https://repo.stackable.tech/repository/packages/trino-cli/trino-cli-396-executable.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to make the CLI tool executable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x trino.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, run some queries against the coordinator. Show available catalogs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./trino.jar --insecure --output-format=CSV_UNQUOTED --server https://localhost:8443 --user admin --execute "SHOW CATALOGS"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which should output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">system</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check how many workers are connected to the coordinator:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./trino.jar --insecure --output-format=CSV_UNQUOTED --server https://localhost:8443 --user admin --execute "SELECT COUNT(*) as nodes FROM system.runtime.nodes WHERE coordinator=false AND state='active'"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which should output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Congratulations, you set up your first Stackable Trino cluster successfully.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_the_trino_web_interface"><a class="anchor" href="#_access_the_trino_web_interface"></a>Access the Trino web interface</h3>
+<div class="paragraph">
+<p>With the port-forward still active, you can connect to the Trino web interface. Enter <code><a href="https://localhost:8443/ui" class="bare">https://localhost:8443/ui</a></code> in your browser and login with the username <code>admin</code>. Since no authentication is enabled you do not need to enter a password.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Your browser will probably show a security risk warning because it does not trust the self generated TLS certificates. Just ignore that and continue.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After logging in you should see the Trino web interface:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/trino-web-ui.png" alt="trino web ui">
+</div>
+</div>
+<div class="paragraph">
+<p>If you mark the <code>Finished</code> button in the <code>Query Details</code> section, you should see the two queries that were sent earlier via the CLI tool:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/trino-web-ui-finished.png" alt="trino web ui finished">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clean_up"><a class="anchor" href="#_clean_up"></a>Clean up</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to remove the previously downloaded CLI tool, you can safely remove it from your system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">rm trino.jar</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Have a look at the <a href="../usage_guide/cluster.html" class="xref page">Creating a Trino cluster</a> to find out more about how to configure a Trino cluster.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Setting up an end-to-end data pipeline :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/home/stable/tutorials/end-to-end_data_pipeline_example.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="home" data-version="nightly">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../index.html">Stackable Documentation</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">nightly</button>
+        <div class="version-menu">
+          <a class="version is-current" href="end-to-end_data_pipeline_example.html">nightly</a>
+          <a class="version" href="../../stable/tutorials/end-to-end_data_pipeline_example.html">22.11</a>
+          <a class="version" href="../../22.09/tutorials/end-to-end_data_pipeline_example.html">22.09</a>
+          <a class="version" href="../../22.06/tutorials/end-to-end_data_pipeline_example.html">22.06</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting_started.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../concepts/index.html">Concepts</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../concepts/roles-and-role-groups.html">Roles and role groups</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../concepts/service_discovery.html">Service discovery ConfigMap</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../concepts/opa.html">OPA authorization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../concepts/s3.html">S3 resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../concepts/pvc.html">PersistentVolumeClaim usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../concepts/resources.html">Resource management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Tutorials</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="end-to-end_data_pipeline_example.html">Setting up an end-to-end data pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../reference/index.html">Reference</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/s3.html">S3 resources</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../operators/index.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operators/supported_versions.html">Supported Product Versions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operators/monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../airflow/stable/index.html">Apache Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../druid/stable/index.html">Apache Druid</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../hbase/stable/index.html">Apache HBase</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../hive/stable/index.html">Apache Hive</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../kafka/stable/index.html">Apache Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../nifi/stable/index.html">Apache NiFi</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../superset/stable/index.html">Apache Superset</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../trino/stable/index.html">Trino</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../commons-operator/stable/index.html">Commons</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../secret-operator/stable/index.html">Secret</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../contributor/index.html">Contributor&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributor/steps.html">Steps to contribute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributor/development_dashboard.html">Development Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributor/style_guide.html">Documentation style guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Implementation guidelines</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contributor/service_discovery.html">Service discovery implementation guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contributor/opa_configuration.html">OPA connection implementation guidelines</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../contributor/adr/index.html">Architectural Decision Records</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Current</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR001-choose_project_language.html">ADR001: Use English as Documentation Language</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR002-choose_repository_structure.html">ADR002: Use Multiple Repositories instead of one Large Repository</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR003-choose_review_mechanism.html">ADR003: Use RTC as Review Mechanism for Changes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR004-choose_agent_programming_language.html">ADR004: Use Rust as programming language for the agent</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR005-systemd_unit_file_location.html">ADR005: Decide on handling and location of systemd unit files</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR007-defined_reuse_of_k8s.html">ADR007: Decide if Kubernetes Components Are to be Reused for Stackable</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR008-decide_reuse_of_operators.html">ADR008: Allow Reuse of Existing Kubernetes Operators</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR009-selector_support.html">ADR009: Assigning Services to Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR010-command_pattern.html">ADR010: Expressing one-shot commands in a Kubernetes-native way</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR011-directory_structure.html">ADR011: Directory Structure Used by Stackable Components on Managed Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR012-authn_token_management.html">ADR012: Authentication token management</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR013-supported_kubernetes_versions.html">ADR013: Supported Kubernetes versions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR014-user_authentication_for_products.html">ADR014: User Authentication for Products</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR015-using_values_from_configmaps.html">ADR015: How Should Operators Use Values from ConfigMaps &amp; Secrets</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR016-definition_of_s3_objects.html">ADR016: Representation of S3 Buckets in CRDs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR017-tls_authentication.html">ADR017: TLS authentication</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR018-product_image_versioning.html">ADR018: Product Image Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR019-trino_catalog_definitions.html">ADR019: Trino catalog definitions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR020-trino_catalog_usage.html">ADR020: Trino catalog usage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR021-stackablectl_stacks_inital_version.html">ADR021: Initial Version of Stackable Stacks Functionality</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR022-spark-history-server.html">ADR022: Spark history server</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR023-product-image-selection.html">ADR023: Product image selection</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/ADR024-out-of-cluster_access.html">ADR024: How to provide stable out-of-cluster access to products</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deprecated</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/deprecated/ADR006-choose_orchestrator_storage_backend.html">Use xxx as storage backend for the orchestrator</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Drafts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../contributor/adr/drafts/ADRx-choose_authorization_engine.html">Choose Authorization Engine</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../release_notes.html">Release Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Documentation</span>
+    <span class="version">nightly</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Stackable Documentation</a></li>
+    <li><a href="index.html">Tutorials</a></li>
+    <li><a href="end-to-end_data_pipeline_example.html">Setting up an end-to-end data pipeline</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/felix/repos/documentation/modules/tutorials/pages/end-to-end_data_pipeline_example.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Setting up an end-to-end data pipeline</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this tutorial you will set up a data pipeline, from raw data to visualization. You read data from S3 using NiFi, send it to Kafka, from there it is ingested into Druid, and lastly you visualize the data using Superset.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_this_tutorial"><a class="anchor" href="#_about_this_tutorial"></a>About this tutorial</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The purpose of this tutorial is a deeper exploration of the Stackable platform and its features. It is not a guide to building a robust data pipeline.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial is intended to run in a private network or lab; it does not enable many security features such as authentication or encryption and should not be directly connected to the Internet. Be careful if you are deploying in the cloud as your instances may default to using public IPs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You should make sure that you have everything you need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A running Kubernetes cluster</p>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a> to interact with the cluster</p>
+</li>
+<li>
+<p><a href="https://helm.sh/">Helm</a> to deploy third-party dependencies</p>
+</li>
+<li>
+<p><a href="../../../stackablectl/stable/installation.html" class="xref page">stackablectl</a> to install and interact with Stackable operators</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>While we recommend to use stackablectl, you can also install operators from the Helm Chart repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm repo add stackable-stable https://repo.stackable.tech/repository/helm-stable/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instructions for installing via Helm are also provided throughout the tutorial.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Shell utilities like <code>cat</code> and <code>curl</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nifi_and_kafka"><a class="anchor" href="#_nifi_and_kafka"></a>Nifi and Kafka</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows how to instantiate the first part of the entire processing chain, which will ingest CSV files from an S3 bucket, split the files into individual records and send these records to a Kafka topic.</p>
+</div>
+<div class="sect2">
+<h3 id="_deploy_the_operators"><a class="anchor" href="#_deploy_the_operators"></a>Deploy the Operators</h3>
+<div class="paragraph">
+<p>The resource definitions rolled out in this section need their respective Operators to be installed in the K8s cluster. I.e. to run a Kafka instance, the Kafka Operator needs to be installed.</p>
+</div>
+<div class="sect3">
+<h4 id="_secret_operator"><a class="anchor" href="#_secret_operator"></a>Secret Operator</h4>
+<div class="paragraph">
+<p>The <a href="../../../secret-operator/stable/index.html" class="xref page">Secret Operator</a> is needed by the Stackable Operator for Apache NiFi, as NiFi requires the UI to be served via HTTPS.
+The necessary certificates and keys for this are provided by the Secret Operator to the NiFi Pods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl operator install secret</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install secret-operator stackable-stable/secret-operator</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_zookeeper_operator"><a class="anchor" href="#_zookeeper_operator"></a>ZooKeeper Operator</h4>
+<div class="paragraph">
+<p>Apache NiFi and Apache Kafka both use Apache ZooKeeper as backing config storage, so the <a href="../../../zookeeper/stable/index.html" class="xref page">Stackable Operator for Apache ZooKeeper</a> has to be installed in order to make sure that a ZooKeeper cluster can be rolled out.
+There is no need to install multiple ZooKeeper clusters, as NiFi, Kafka and Druid can share the same cluster via provisioning a ZNode per backed service.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl operator install zookeeper</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install zookeeper-operator stackable-stable/zookeeper-operator</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_kafka_operator"><a class="anchor" href="#_kafka_operator"></a>Kafka Operator</h4>
+<div class="paragraph">
+<p>NiFi publishes the individual records from the S3 data to Kafka.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl operator install kafka</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install kafka-operator stackable-stable/kafka-operator</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_nifi_operator"><a class="anchor" href="#_nifi_operator"></a>NiFi Operator</h4>
+<div class="paragraph">
+<p>NiFi is an ETL tool which will be used to model the dataflow of downloading and splitting files from S3.
+It will also be used to convert the file content from CSV to JSON.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl operator install nifi</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install nifi-operator stackable-stable/nifi-operator</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploying_zookeeper"><a class="anchor" href="#_deploying_zookeeper"></a>Deploying ZooKeeper</h3>
+<div class="paragraph">
+<p>Since both Kafka and NiFi depend on Apache ZooKeeper, we will create a ZooKeeper cluster first.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperCluster
+metadata:
+  name: simple-zk
+spec:
+  version: 3.8.0-stackable0.7.1
+  servers:
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        replicas: 1
+        config: {}
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploying_kafka_and_nifi"><a class="anchor" href="#_deploying_kafka_and_nifi"></a>Deploying Kafka and NiFi</h3>
+<div class="paragraph">
+<p>To deploy Kafka and NiFi you can now apply the cluster configuration. Run the following command in the console to deploy and configure all three services.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperZnode
+metadata:
+  name: simple-kafka-znode
+spec:
+  clusterRef:
+    name: simple-zk
+---
+apiVersion: kafka.stackable.tech/v1alpha1
+kind: KafkaCluster
+metadata:
+  name: simple-kafka
+spec:
+  version: 3.2.0-stackable0.1.0
+  zookeeperConfigMapName: simple-kafka-znode
+  brokers:
+    config:
+      resources:
+        storage:
+          logDirs:
+            capacity: '2Gi'
+        cpu:
+          max: '500m'
+          min: '250m'
+        memory:
+          limit: '1Gi'
+    roleGroups:
+      default:
+        replicas: 1
+---
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperZnode
+metadata:
+  name: simple-nifi-znode
+spec:
+  clusterRef:
+    name: simple-zk
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nifi-admin-credentials-simple
+stringData:
+  username: admin
+  password: supersecretpassword
+---
+apiVersion: nifi.stackable.tech/v1alpha1
+kind: NifiCluster
+metadata:
+  name: simple-nifi
+spec:
+  version: 1.16.3-stackable0.1.0
+  zookeeperConfigMapName: simple-nifi-znode
+  config:
+    authentication:
+      method:
+        singleUser:
+          adminCredentialsSecret: nifi-admin-credentials-simple
+          autoGenerate: true
+    sensitiveProperties:
+      keySecret: nifi-sensitive-property-key
+      autoGenerate: true
+  nodes:
+    config:
+      resources:
+        memory:
+          limit: "1"  # Option
+        cpu:
+          min: "2"  # Option
+          max: "3" # Option
+        storage:
+          contentRepo:
+            capacity: "10Gi"  # Option
+          databaseRepo:
+            capacity: "20Gi" # Option
+          flowfileRepo:
+            capacity: "20Gi" # Option
+          provenanceRepo:
+            capacity: "20Gi" # Option
+          stateRepo:
+            capacity: "20Gi"
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        config:
+          log:
+            rootLogLevel: INFO
+          resources:
+            memory:
+              limit: "1Gi"  # Option
+            cpu:
+              min: "2"  # Option
+              max: "3" # Option
+            storage:
+              contentRepo:
+                capacity: "10Gi"  # Option
+              databaseRepo:
+                capacity: "20Gi" # Option
+              flowfileRepo:
+                capacity: "20Gi" # Option
+              provenanceRepo:
+                capacity: "20Gi" # Option
+              stateRepo:
+                capacity: "20Gi"
+        replicas: 1
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Nifi installation will take several minutes due to the size of the images.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_process_the_data_and_write_to_kafka"><a class="anchor" href="#_process_the_data_and_write_to_kafka"></a>Process the data and write to Kafka</h3>
+<div class="paragraph">
+<p>After all Pods are successfully deployed the NiFi web interface should be accessible.
+To retrieve the appropriate URL you can run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get svc simple-nifi -o json | jq -r --argfile endpoints &lt;(kubectl get endpoints simple-nifi -o json) --argfile nodes &lt;(kubectl get nodes -o json) '($nodes.items[] | select(.metadata.name == $endpoints.subsets[].addresses[].nodeName) | .status.addresses | map(select(.type == "ExternalIP" or .type == "InternalIP")) | min_by(.type) | .address | tostring) + ":" + (.spec.ports[] | select(.name == "https") | .nodePort | tostring)'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will output all UI endpoints for the NiFi cluster, the only thing you need to do is prepend 'https://' when accessing the UI in your browser. If your browser warns you that the connection is not secure (because of a self-signed certificate) you must continue to the unsafe variant.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/nifi-login.png" alt="NiFi Login Screen">
+</div>
+</div>
+<div class="paragraph">
+<p>The login credentials are defined in the <a href="https://github.com/stackabletech/nifi-operator/blob/main/examples/simple-nifi-cluster.yaml#L33">NiFi example</a>.
+Unless you changed these before deploying the cluster you will be able to log in with <code>admin</code> / <code>supersecretpassword</code>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have successfully logged in you should be presented with the NiFi UI showing an empty canvas.
+This canvas is the main place where you will interact with NiFi. You can drag processors on here, configure them as needed and connect these processors to create a flow that offers the processing that you need.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As this guide is not intended to be a NiFi guide most of NiFi&#8217;s features will be glossed over and only very brief instructions provided on what needs to be done to get the flow up and running.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A template for a flow for this tutorial is provided <a href="_attachments/s3-kafka.xml">here</a>. Download the template.</p>
+</div>
+<div class="paragraph">
+<p>In order to upload the template to NiFi, click on the <em>upload template</em> button in the UI and specify the appropriate file.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/nifi-uploadtemplate.png" alt="Upload template to NiFi">
+</div>
+</div>
+<div class="paragraph">
+<p>To deploy the template as a flow you need to click on the <em>template</em> button in NiFi&#8217;s main menu and drag it over the canvas.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/nifi-createtemplate.png" alt="Create flow from template">
+</div>
+</div>
+<div class="paragraph">
+<p>After you have done this, you should be presented with a process group named "S3 Kafka" on your canvas that is <strong>almost</strong> ready to start processing data.
+The only thing that still needs doing is to enable some <a href="https://nifi.apache.org/docs.html">ControllerServices</a> used by the processors.</p>
+</div>
+<div class="paragraph">
+<p>To get to these services you can double-click on the process group and then right-click on the <a href="https://nifi.apache.org/docs.html">SplitRecord</a> processor, go to the <em>properties</em> tab and click on one of the small arrows next to the <em>Record Reader</em> and <em>Record Writer</em> options.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/nifi-controllerservices.png" alt="Configure controller services">
+</div>
+</div>
+<div class="paragraph">
+<p>On the controller page, enable all three services by clicking on the small lightning symbol next to every service.
+You will be presented with a confirmation dialog but no further action should be needed here.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/nifi-enablecontroller.png" alt="Enable controller services">
+</div>
+</div>
+<div class="paragraph">
+<p>Once this is done return to the main canvas and you are ready to start your flow and get data going.
+To start the entire flow make sure that you do not have any processors selected by simply clicking on the empty canvas anywhere.
+If you click the start button now, NiFi will start all processors and data should start flowing through and end up in the pre-configured Kafka topic.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The flow in its packaged form has been restricted to only download a small subset of the yellow taxi dataset, as the full size data is fairly large.
+If you have the capacity to process all data you can remove this restriction in the <em>prefix</em> property of the <a href="https://nifi.apache.org/docs.html">ListS3</a> processor to do so, as shown in the screenshot below.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/nifi-prefix.png" alt="Download filter">
+</div>
+</div>
+<div class="paragraph">
+<p>If you change the highlighted value to <code>csv_backup/yellow_tripdata_</code> all data for yellow cabs will be downloaded.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_druid"><a class="anchor" href="#_druid"></a>Druid</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that the taxi data has been read from S3, processed in NiFi and written to a Kafka topic, you can read from that Kafka topic to ingest the data into a Druid data set.</p>
+</div>
+<div class="paragraph">
+<p>You will set up the Operator and some dependencies, provision a Druid cluster and then do the data ingestion from Kafka into Druid - first through the Druid web interface and then from the command line.</p>
+</div>
+<div class="sect2">
+<h3 id="_deploy_the_stackable_druid_operator"><a class="anchor" href="#_deploy_the_stackable_druid_operator"></a>Deploy the Stackable Druid Operator</h3>
+<div class="paragraph">
+<p>Like the other Operators, the Druid Operator is easily installed with Helm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl operator install druid</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install druid-operator stackable-stable/druid-operator</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_set_up_dependencies"><a class="anchor" href="#_set_up_dependencies"></a>Set up dependencies</h3>
+<div class="paragraph">
+<p>While the Operator already runs, Druid itself needs an SQL database for metadata and either HDFS or an S3 object storage for deep storage of data segments. It also needs a ZooKeeper instance for the individual processes to communicate with each other.</p>
+</div>
+<div class="sect3">
+<h4 id="_metadata_storage"><a class="anchor" href="#_metadata_storage"></a>Metadata storage</h4>
+<div class="paragraph">
+<p>For the Metadata storage install  a PostgreSQL database with the bitnami Helm Chart:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install postgresql-druid \
+    --repo https://charts.bitnami.com/bitnami postgresql \
+    --set auth.username=druid \
+    --set auth.password=druid \
+    --set auth.database=druid \
+    --version 11.0.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The database name, as well as user and password are all <code>druid</code>, you will need these later when configuring the Druid cluster to use the database.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deep_storage"><a class="anchor" href="#_deep_storage"></a>Deep storage</h4>
+<div class="paragraph">
+<p>Druid requires a backing storage (so called Deep-Storage) where data - partitioned by date or time - is persisted as immutable segments. Druid can use either local storage (only appropriate for stand-alone testing - i.e. all druid components run on the same machine), S3 or HDFS. In this guide you will use S3, specifically MinIO which is an S3-implementation suitable for low-footprint scenarios. Deploy a MinIO instance to use as the Druid deep storage, using the MinIO Helm chart:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install minio \
+  --repo https://charts.min.io/ minio \
+  --set resources.requests.memory=8Gi \
+  --set mode=standalone \
+  --set replicas=1 \
+  --set persistence.enabled=false \
+  --set "buckets[0].name=nytaxidata,buckets[0].policy=none" \
+  --set "users[0].accessKey=minioAccessKey,users[0].secretKey=minioSecretKey,users[0].policy=readwrite"</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>A memory allocation of 8GB is specified as Min-IO will use 16GB by default.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The access credentials <code>minioAccessKey</code> and <code>minioSecretKey</code> given above will be reused further down in a Secret read by Druid to access the MinIO object storage.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_zookeeper"><a class="anchor" href="#_zookeeper"></a>ZooKeeper</h4>
+<div class="paragraph">
+<p>You already installed the ZooKeeper Operator and set up a cluster when you set up NiFi and Kafka. Now all you need to do, is deploying a dedicated ZNode for Druid to use to ensure no Druid properties collide with other properties written to ZooKeeper. Simply deploy a ZNode resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperZnode
+metadata:
+  name: simple-druid-znode <i class="conum" data-value="2"></i><b>(2)</b>
+spec:
+  clusterRef:
+    name: simple-zk
+EOF</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_the_druid_cluster"><a class="anchor" href="#_deploy_the_druid_cluster"></a>Deploy the Druid cluster</h3>
+<div class="paragraph">
+<p>Now that the Operator and Dependencies are set up, you can deploy the Druid cluster. The credentials for the MinIO instance are not written directly into the cluster resource, but in a dedicated Secret which is then referenced in the cluster resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: secrets.stackable.tech/v1alpha1
+kind: SecretClass
+metadata:
+  name: druid-s3-credentials
+spec:
+  backend:
+    k8sSearch:
+      searchNamespace:
+        pod: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: druid-s3-credentials
+  labels:
+    secrets.stackable.tech/class: druid-s3-credentials
+stringData:
+  accessKey: minioAccessKey
+  secretKey: minioSecretKey
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now the cluster definition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+apiVersion: druid.stackable.tech/v1alpha1
+kind: DruidCluster
+metadata:
+  name: druid-nytaxidata
+spec:
+  version: 0.23.0-stackable0.1.0
+  zookeeperConfigMapName: simple-druid-znode  <i class="conum" data-value="1"></i><b>(1)</b>
+  metadataStorageDatabase:  <i class="conum" data-value="2"></i><b>(2)</b>
+    dbType: postgresql
+    connString: jdbc:postgresql://postgresql-druid/druid
+    host: postgresql-druid
+    port: 5432
+    user: druid
+    password: druid
+  ingestion:
+    s3connection:
+      inline:
+        host: http://minio
+        port: 9000
+        accessStyle: Path
+        credentials:
+          secretClass: druid-s3-credentials  <i class="conum" data-value="3"></i><b>(3)</b>
+  deepStorage:
+    s3:
+      bucket:
+        inline:
+          bucketName: nytaxidata
+          connection:
+            inline:
+              host: http://minio
+              port: 9000
+              accessStyle: Path
+              credentials:
+                secretClass: druid-s3-credentials <i class="conum" data-value="3"></i><b>(3)</b>
+  brokers:
+    configOverrides:
+      runtime.properties:
+        druid.s3.enablePathStyleAccess: "true"
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        config: {}
+        replicas: 1
+  coordinators:
+    configOverrides:
+      runtime.properties:
+        druid.s3.enablePathStyleAccess: "true"
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        config: {}
+        replicas: 1
+  historicals:
+    configOverrides:
+      runtime.properties:
+        druid.s3.enablePathStyleAccess: "true"
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        config: {}
+        replicas: 1
+  middleManagers:
+    configOverrides:
+      runtime.properties:
+        druid.s3.enablePathStyleAccess: "true"
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        config: {}
+        replicas: 1
+  routers:
+    configOverrides:
+      runtime.properties:
+        druid.s3.enablePathStyleAccess: "true"
+    roleGroups:
+      default:
+        selector:
+          matchLabels:
+            kubernetes.io/os: linux
+        config: {}
+        replicas: 1
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that all the dependencies you set up above are referenced in the cluster definition:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>ZooKeeper Druid ZNode</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>PostgreSQL access</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>MinIO credentials secret</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_ingestion"><a class="anchor" href="#_data_ingestion"></a>Data ingestion</h3>
+<div class="paragraph">
+<p>There are different ways to get data into Druid, all of which will use a <code>POST</code> of a Druid-compatible ingestion specification. This tutorial guides you through two ways of doing this, either directly in the Druid UI, or - this is e.g. useful if the job is to be repeated - by extracting the ingestion specification into a JSON file and issuing a curl from the command line (some of what follows is also covered in more depth in the official Druid documentation, but is mentioned here for the sake of completeness).</p>
+</div>
+<div class="sect3">
+<h4 id="_ingestion_with_the_druid_web_interface"><a class="anchor" href="#_ingestion_with_the_druid_web_interface"></a>Ingestion with the Druid web interface</h4>
+<div class="paragraph">
+<p>The Druid web interface is accessible on the Router Pod of the Druid cluster. The Operator created a Service for the Router, from which you port-forward the port 8888 where the web interface is served:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl port-forward svc/druid-nytaxidata-router 8888</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Keep this command running to continue accessing the Router port locally.</p>
+</div>
+<div class="paragraph">
+<p>The UI should now be reachable at <a href="http://localhost:8888" class="bare">http://localhost:8888</a> and should look like the screenshot below. Start with the "Load Data" and "New Spec" option:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-main.png" alt="Main Screen">
+</div>
+</div>
+<div class="paragraph">
+<p>Select "Apache Kafka" and then "Connect Data" at the right of the screen, entering the following in the two available fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bootstrap servers: <code>simple-kafka:9092</code></p>
+</li>
+<li>
+<p>Topic: <code>nytaxidata</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then select "Start of stream" and then "Apply":</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-connect.png" alt="Connect to Kafka">
+</div>
+</div>
+<div class="paragraph">
+<p>At the bottom right of the screen click through</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>“Parse Data”, “Parse Time”, “Transform”, “Filter”, “Configure Schema”</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>without changing anything. At the next step - “Partition” - select <code>day</code> for the granularity:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-partition.png" alt="Partition">
+</div>
+</div>
+<div class="paragraph">
+<p>Then click on “Tune”. At this point you instruct Druid on how to manage the Kafka offsets. As this is the initial read action choose “True” so that Kafka starts at the earliest possible offset (subsequent reads will pick up from the last offset that Druid has cached internally):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-tuning.png" alt="Offsets">
+</div>
+</div>
+<div class="paragraph">
+<p>Click through “Publish” to show “Edit spec”. At this point you have a complete ingestion job specification in JSON format:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-jobspec.png" alt="Ingestion-spec">
+</div>
+</div>
+<div class="paragraph">
+<p>Now click on the final step on the bottom (“Submit”) and the job will start running - since the job is a streaming job it will wait for fresh Kafka data in the specified topic and ingest it into Druid. However, before doing that, save the JSON specification in a separate file (e.g. <code>/tmp/kafka-ingestion-spec.json</code>) as you will use it later to start this job from the command line using <code>curl</code>.</p>
+</div>
+<div class="paragraph">
+<p>Back at the screen, click on “Submit” - the ingestion job will be started, which takes a few moments. As mentioned already, the job is a streaming job, so it will continue to run in the background (i.e. the status remains <code>RUNNING</code>):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-task.png" alt="Task">
+</div>
+</div>
+<div class="paragraph">
+<p>The magnifying glass icon shows metadata such as logs, spec-definition etc.:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-running.png" alt="Running job">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the ingestion job has been started, Druid monitors the relevant Kafka topic for changes and ingest new data, persisting it in its deep storage. It can take a few moments for the first segments to be ready (and a bit longer until they are published as immutable segments in deep storage). The streaming job will stay at RUNNING until it is stopped manually. The data source is visible under the “Datasources” tab, where the individual segments - partitioned by time slice - can also be examined:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-datasources.png" alt="Datasources">
+</div>
+</div>
+<div class="paragraph">
+<p>To display data from the data source, use the SQL editor under the “Query” tab:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/druid-query.png" alt="Query screen">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ingestion_with_curl"><a class="anchor" href="#_ingestion_with_curl"></a>Ingestion with <code>curl</code></h4>
+<div class="paragraph">
+<p>An ingestion job can also be started from the commandline, using a JSON specification and curl to submit it. In this example, the JSON specification file is  <code>/tmp/kafka-ingestion-spec.json</code>.</p>
+</div>
+<div class="paragraph">
+<p>As before, issue a port-forwarding command to access the Druid from outside the Kubernetes cluster; but now for the coordinator instead of the router:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl port-forward svc/druid-nytaxidata-coordinator 8081</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again, keep this command running to keep the port forwarded.</p>
+</div>
+<div class="paragraph">
+<p>Now, issue a HTTP POST request via curl, referencing the JSON specification file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -X POST -H 'Content-Type: application/json' -d @/tmp/kafka-ingestion-spec.json http://localhost:8081/druid/indexer/v1/supervisor</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should yield a status code of 200 with a response of <code>{"id":"nytaxidata"}</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You have extracted the ingestion specification from the UI, where the data source was created as part of the process, but you could also run this job without an existing data source, as the job will create it if needed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_superset"><a class="anchor" href="#_superset"></a>Superset</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To analyze the data in Druid, the steps below explain how you can connect a Superset instance to your Druid instance and read and visualize the data in Superset.</p>
+</div>
+<div class="sect2">
+<h3 id="_deploy_the_stackable_superset_operator"><a class="anchor" href="#_deploy_the_stackable_superset_operator"></a>Deploy the Stackable Superset Operator</h3>
+<div class="paragraph">
+<p>As before, you need to install the Operator:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl operator install superset</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install superset-operator stackable-stable/superset-operator</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_set_up_dependencies_2"><a class="anchor" href="#_set_up_dependencies_2"></a>Set up dependencies</h3>
+<div class="paragraph">
+<p>Like Druid, Superset requires an SQL database to run. To install a dedicated database for Superset use the Bitnami PostgreSQL Helm chart to deploy a PostgreSQL instance (like you did for Druid):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">helm install superset-postgresql postgresql \
+    --repo https://charts.bitnami.com/bitnami \
+    --set auth.username=superset \
+    --set auth.password=superset \
+    --set auth.database=superset \
+    --version 11.0.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Superset will read the credentials from a Secret. Create a secret with the database credentials in it, in the key <code>connections.sqlalchemyDatabaseUri</code>. The secret also contains the information of the initial admin user:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: simple-superset-credentials
+type: Opaque
+stringData:
+  adminUser.username: admin
+  adminUser.firstname: Superset
+  adminUser.lastname: Admin
+  adminUser.email: admin@superset.com
+  adminUser.password: admin
+  connections.secretKey: thisISaSECRET_1234
+  connections.sqlalchemyDatabaseUri: postgresql://superset:superset@superset-postgresql.default.svc.cluster.local/superset
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_the_superset_cluster"><a class="anchor" href="#_deploy_the_superset_cluster"></a>Deploy the Superset cluster</h3>
+<div class="paragraph">
+<p>Now deploy Superset:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+apiVersion: superset.stackable.tech/v1alpha1
+kind: SupersetCluster
+metadata:
+  name: simple-superset
+spec:
+  version: 1.5.1-stackable0.1.0  <i class="conum" data-value="1"></i><b>(1)</b>
+  statsdExporterVersion: v0.22.4
+  credentialsSecret: simple-superset-credentials  <i class="conum" data-value="2"></i><b>(2)</b>
+  nodes:
+    roleGroups:
+      default:
+        config:
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the version of Superset used for this instance. You can find the Superset versions supported by Stackable in the <a href="../../../superset/stable/index.html" class="xref page">Superset Operator documentation</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This is the reference to the Secret you created earlier.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On the first deployment of the Superset cluster, the Operator will also initialize the database. Once the database is initialized, you can connect to the cluster.</p>
+</div>
+<div class="paragraph">
+<p>You can verify that the database is up and running with this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl get statefulset superset-postgresql -o \
+jsonpath='{.status.readyReplicas}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It should return <code>1</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_set_up_port_forwarding_for_the_superset_web_interface"><a class="anchor" href="#_set_up_port_forwarding_for_the_superset_web_interface"></a>Set up port forwarding for the Superset web interface</h4>
+<div class="paragraph">
+<p>You can also connect to the Superset UI:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl port-forward service/simple-superset-external 8088</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now point your browser to <code><a href="http://localhost:8088/" class="bare">http://localhost:8088/</a></code> and you will see the login screen of Superset:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-login.png" alt="Login">
+</div>
+</div>
+<div class="paragraph">
+<p>Log in with your admin user; if you have not chosen different credentials, the ones used above are username <code>admin</code> and password <code>admin</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_query_druid_from_superset"><a class="anchor" href="#_query_druid_from_superset"></a>Query Druid from Superset</h3>
+<div class="paragraph">
+<p>Now that Druid and Superset are running, it is time to connect the two. The Superset Operator takes care of that. Deploy a <code>DruidConnection</code> resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+apiVersion: superset.stackable.tech/v1alpha1
+kind: DruidConnection
+metadata:
+  name: superset-druid-connection
+spec:
+  superset:
+    name: simple-superset  <i class="conum" data-value="1"></i><b>(1)</b>
+    namespace: default
+  druid:
+    name: druid-nytaxidata  <i class="conum" data-value="2"></i><b>(2)</b>
+    namespace: default
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The name of the Superset cluster</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The name of the Druid cluster</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The Operator will create a job that adds this connection to the Superset cluster.</p>
+</div>
+<div class="paragraph">
+<p>You can now find the Druid cluster as a data source in Superset. In the menu, under <code>Data</code> &gt; <code>Databases</code> you should see the Druid cluster:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-databases.png" alt="Databases">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you do not see your Druid instance, check the status on the <code>DruidConnection</code> you deployed (<code>superset-druid-connection</code>), it should be <code>Ready</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To read the data stored in your Druid database, create a dataset in Superset referencing the table. This is done under “Data” &gt; “Datasets”:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-dataset.png" alt="Dataset">
+</div>
+</div>
+<div class="paragraph">
+<p>The data can be queried in <code>SQL Lab</code> &#8594; <code>SQL Editor</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-query.png" alt="SQL Editor">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_analysis_and_dashboards"><a class="anchor" href="#_data_analysis_and_dashboards"></a>Data analysis and dashboards</h3>
+<div class="paragraph">
+<p>After defining the dataset, use it to create a chart for a dashboard:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-chart.png" alt="Chart">
+</div>
+</div>
+<div class="paragraph">
+<p>Create a simple time-series line chart. Applying these settings, you can see from the chart (and the average tip amount) that passengers are more generous towards the end of the month:</p>
+</div>
+<div class="sect3">
+<h4 id="_settings"><a class="anchor" href="#_settings"></a>Settings</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the range has been set so that it matches the filter originally applied in the Nifi template.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Chart Setting</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>__time</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time range</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2020-05-01 ≤ col &lt; 2020-06-01</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Metrics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AVG(tip_amount)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X axis title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>May 2020</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X axis title bottom margin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>30</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y axis title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>USD</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y axis title margin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>30</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X axis time format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%a</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-chart2.png" alt="Chart2">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, create a dashboard with this chart:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/end-to-end_data_pipeline_example/superset-dashboard.png" alt="Dashboard">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

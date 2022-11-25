@@ -1,0 +1,16 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 191" width="225" height="191">
+  <!-- svg-source:excalidraw -->
+  
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Virgil";
+        src: url("https://excalidraw.com/Virgil.woff2");
+      }
+      @font-face {
+        font-family: "Cascadia";
+        src: url("https://excalidraw.com/Cascadia.woff2");
+      }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="225" height="191" fill="#ffffff"></rect><g stroke-linecap="round" transform="translate(48 123) rotate(0 76.5 19.5)"><path d="M1.55 1.27 C35.23 2.56, 67.95 0.03, 151.62 1.92 M-0.15 -0.13 C58.31 0.08, 115.53 -0.3, 152.5 0.97 M153.29 -1.75 C151.87 13.68, 152.58 27.33, 153.81 39.37 M153.3 -0.09 C153.66 11.29, 152.48 23.68, 152.42 38.64 M152.53 37.44 C121.57 36.99, 87.54 37.51, -0.74 37.35 M152.31 39.74 C112.43 39.97, 73.01 40.74, -0.77 39.83 M0.85 40.73 C0.58 22.29, 2.05 8.58, 1.35 1.86 M0.17 38.97 C-0.36 25.92, 0.03 12.95, 0.06 0.09" stroke="#000000" stroke-width="1" fill="none"></path></g><g transform="translate(53 130.5) rotate(0 71.5 12)"><text x="71.5" y="17" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="middle" style="white-space: pre;" direction="ltr">S3Connection</text></g><g stroke-linecap="round" transform="translate(42 68) rotate(0 82.5 51.5)"><path d="M1.01 1.23 C34.65 -2.35, 68.9 0.87, 166.6 1.59 M0.17 -0.25 C45.28 -0.41, 91.52 1.18, 165.5 -0.82 M164.19 0.02 C165.05 36.88, 165.95 74.11, 165.03 103.64 M165.54 -0.48 C164.67 29.21, 164.73 57.75, 164.13 102.25 M166.22 102.47 C131.26 101.7, 97.12 100.06, -0.81 102.27 M164.12 102.97 C104.13 104.96, 43.7 105.05, 0.96 102.46 M0.37 101.74 C1.4 77.5, 0.91 52.9, 0.83 -0.94 M-0.54 103.24 C-0.33 71.25, -0.11 38.39, 0.51 0.26" stroke="#000000" stroke-width="1" fill="none"></path></g><g stroke-linecap="round" transform="translate(10 10) rotate(0 102.5 85.5)"><path d="M-0.44 -1.16 C73.3 0.59, 150.49 0.29, 204.62 -0.27 M-0.65 -0.56 C58.36 1.31, 118.06 -0.28, 205.52 0.13 M204.9 0.01 C205.12 36.66, 204.34 73.23, 204.64 171.61 M204.36 0.16 C205.34 49.38, 205.05 98.72, 204.03 170.76 M204.85 170.99 C158.87 169.04, 113.33 169.86, 1.16 169.77 M204.46 171.66 C127.69 171.68, 52.6 170.46, -0.43 171.38 M1.84 171.48 C1.04 106.76, 0.52 37.85, 0.28 0.35 M-0.15 171.6 C0.99 120.3, 1.43 69.67, -0.33 -0.75" stroke="#000000" stroke-width="1" fill="none"></path></g><g transform="translate(23 21.5) rotate(0 62 13)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr">DruidCluster</text></g><g transform="translate(52 78) rotate(0 47.5 13)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr">S3Bucket</text></g></svg>

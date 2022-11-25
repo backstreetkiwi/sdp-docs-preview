@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>data-warehouse-iceberg-trino-spark :: Stackable Documentation</title>
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="stackablectl" data-version="nightly">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../index.html">stackablectl</a></h3>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commands</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/demo.html">Demo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/operator.html">Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/release.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/services.html">Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/stack.html">Stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Demos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="airflow-scheduled-job.html">airflow-scheduled-job</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="data-warehouse-iceberg-trino-spark.html">data-warehouse-iceberg-trino-spark</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hbase-hdfs-load-cycling-data.html">hbase-hdfs-cycling-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nifi-kafka-druid-earthquake-data.html">nifi-kafka-druid-earthquake-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nifi-kafka-druid-water-level-data.html">nifi-kafka-druid-water-level-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="trino-taxi-data.html">trino-taxi-data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../customization.html">Customization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">stackablectl</span>
+    <span class="version">nightly</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">stackablectl</a></li>
+    <li><a href="index.html">Demos</a></li>
+    <li><a href="data-warehouse-iceberg-trino-spark.html">data-warehouse-iceberg-trino-spark</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/stackablectl/edit/main/docs/modules/ROOT/pages/demos/data-warehouse-iceberg-trino-spark.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">data-warehouse-iceberg-trino-spark</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This demos uses significant amount of resources. It will most likely not run on your workstation.
+It was developed and tested on 10 nodes with each 4 cores (8 threads), 20GB RAM and 30GB HDD.
+Additionally, persistent volumes with a total size of approximately 1TB will get created.
+A smaller version of this demo might be created in the future.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This guide assumes that you already have the demo <code>data-warehouse-iceberg-trino-spark</code> installed.
+If you don&#8217;t have it installed please follow the <a href="../commands/demo.html#_install_demo" class="xref page">documentation on how to install a demo</a>.
+To put it simply you have to run <code>stackablectl demo install data-warehouse-iceberg-trino-spark</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This demo will</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install the required Stackable operators</p>
+</li>
+<li>
+<p>Spin up the following data products</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Trino</strong>: A fast distributed SQL query engine for big data analytics that helps you explore your data universe. This demo uses it to enable SQL access to the data</p>
+</li>
+<li>
+<p><strong>Spark</strong>: A multi-language engine for executing data engineering, data science, and machine learning. This demo uses it to stream data from Kafka into the warehouse</p>
+</li>
+<li>
+<p><strong>MinIO</strong>: A S3 compatible object store. This demo uses it as persistent storage to store all the data used</p>
+</li>
+<li>
+<p><strong>Kafka</strong>: A distributed event streaming platform for high-performance data pipelines, streaming analytics and data integration. This demos uses it as an event streaming platform to stream the data in near real-time</p>
+</li>
+<li>
+<p><strong>NiFi</strong>: An easy-to-use, powerful system to process and distribute data. This demos uses it to fetch multiple online real-time data sources and ingest it into Kafka</p>
+</li>
+<li>
+<p><strong>Hive metastore</strong>: A service that stores metadata related to Apache Hive and other services. This demo uses it as metadata storage for Trino and Spark</p>
+</li>
+<li>
+<p><strong>Open policy agent</strong> (OPA): An open source, general-purpose policy engine that unifies policy enforcement across the stack. This demo uses it as the authorizer for Trino, which decides which user is able to query which data.</p>
+</li>
+<li>
+<p><strong>Superset</strong>: A modern data exploration and visualization platform. This demo utilizes Superset to retrieve data from Trino via SQL queries and build dashboards on top of that data</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Copy multiple data sources in CSV and Parquet format into the S3 staging area</p>
+</li>
+<li>
+<p>Let Trino copy the data from staging area into the warehouse area. During the copy transformations such as validating, casting, parsing timestamps and enriching the data by joining lookup-tables are done</p>
+</li>
+<li>
+<p>Simultaneously start a NiFi workflow, which fetches datasets in real-time via the internet and ingests the data as JSON records into Kafka</p>
+</li>
+<li>
+<p>Spark structured streaming job is started, which streams the data out of Kafka into the warehouse</p>
+</li>
+<li>
+<p>Create Superset dashboards for visualization of the different datasets</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can see the deployed products as well as their relationship in the following diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/overview.png" alt="overview">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_apache_iceberg"><a class="anchor" href="#_apache_iceberg"></a>Apache iceberg</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As Apache iceberg states on their <a href="https://iceberg.apache.org/docs/latest/">website</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Apache Iceberg is an open table format for huge analytic datasets. Iceberg adds tables to compute engines including Spark, Trino, PrestoDB, Flink, Hive and Impala using a high-performance table format that works just like a SQL table.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>This demos uses Iceberg as it plays along nicely with object storage as well as having a Trino and Spark integration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_list_deployed_stackable_services"><a class="anchor" href="#_list_deployed_stackable_services"></a>List deployed Stackable services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To list the installed installed Stackable services run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl services list --all-namespaces
+ PRODUCT    NAME          NAMESPACE  ENDPOINTS                                          EXTRA INFOS
+
+ hive       hive          default    hive                212.227.224.138:31022
+                                     metrics             212.227.224.138:30459
+
+ hive       hive-iceberg  default    hive                212.227.233.131:31511
+                                     metrics             212.227.233.131:30003
+
+ kafka      kafka         default    metrics             217.160.118.190:32160
+                                     kafka               217.160.118.190:31736
+
+ nifi       nifi          default    https               https://217.160.120.117:31499  Admin user: admin, password: adminadmin
+
+ opa        opa           default    http                http://217.160.222.211:31767
+
+ superset   superset      default    external-superset   http://212.227.233.47:32393    Admin user: admin, password: admin
+
+ trino      trino         default    coordinator-metrics 212.227.224.138:30610
+                                     coordinator-https   https://212.227.224.138:30876
+
+ zookeeper  zookeeper     default    zk                  212.227.224.138:32321
+
+ minio      minio         default    http                http://217.160.222.211:32031   Third party service
+                                     console-http        http://217.160.222.211:31429   Admin user: admin, password: adminadmin</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When a product instance has not finished starting yet, the service will have no endpoint.
+Starting all the product instances might take a considerable amount of time depending on your internet connectivity.
+In case the product is not ready yet a warning might be shown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minio"><a class="anchor" href="#_minio"></a>MinIO</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_list_buckets"><a class="anchor" href="#_list_buckets"></a>List buckets</h3>
+<div class="paragraph">
+<p>The S3 provided by MinIO is used as persistent storage to store all the data used.
+Open the <code>minio</code> endpoint <code>console-http</code> retrieved by <code>stackablectl services list</code> in your browser (<a href="http://217.160.222.211:31429" class="bare">http://217.160.222.211:31429</a> in this case).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/minio_1.png" alt="minio 1">
+</div>
+</div>
+<div class="paragraph">
+<p>Log in with the username <code>admin</code> and password <code>adminadmin</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/minio_2.png" alt="minio 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Here you can see the two buckets contained in the S3:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>staging</code>: The demo loads static datasets into this area. It is stored in different formats, such as CSV and Parquet. It does contain actual data tables as well as lookup tables.</p>
+</li>
+<li>
+<p><code>warehouse</code>: This bucket is where the cleaned and/or aggregated data resides. The data is stored in the <a href="https://iceberg.apache.org/">Apache Iceberg</a> table format.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inspect_warehouse"><a class="anchor" href="#_inspect_warehouse"></a>Inspect warehouse</h3>
+<div class="paragraph">
+<p>Click on the blue button <code>Browse</code> on the bucket <code>warehouse</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/minio_3.png" alt="minio 3">
+</div>
+</div>
+<div class="paragraph">
+<p>You can see multiple folders (called prefixes in S3) - each containing a different dataset.</p>
+</div>
+<div class="paragraph">
+<p>Click on the folders <code>house-sales</code> afterwards the folder starting with <code>house-sales-*</code> afterwards 'data'.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/minio_4.png" alt="minio 4">
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see the table <code>house-sales</code> is partitioned by day.
+Go ahead and click on any folder.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/minio_5.png" alt="minio 5">
+</div>
+</div>
+<div class="paragraph">
+<p>You can see that Trino has placed a single file here containing all the house sales of that particular year.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nifi"><a class="anchor" href="#_nifi"></a>NiFi</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NiFi is used to fetch multiple datasources from the internet and ingest it into Kafka near-realtime.
+Some data sources are statically downloaded (e.g. as CSV) and others are dynamically fetched via APIs such as REST APIs.
+This includes the following data sources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.pegelonline.wsv.de/webservice/guideRestapi">Water level measurements in Germany</a> (real-time)</p>
+</li>
+<li>
+<p><a href="https://mobidata-bw.de/dataset/bikesh">Shared bikes in Germany</a> (real-time)</p>
+</li>
+<li>
+<p><a href="https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads">House sales in UK</a> (static)</p>
+</li>
+<li>
+<p><a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">Registered earthquakes worldwide</a> (static)</p>
+</li>
+<li>
+<p><a href="https://mobidata-bw.de/dataset/e-ladesaulen">E-charging stations in Germany</a> (static)</p>
+</li>
+<li>
+<p><a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">NewYork taxi data</a> (static)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_view_ingestion_jobs"><a class="anchor" href="#_view_ingestion_jobs"></a>View ingestion jobs</h3>
+<div class="paragraph">
+<p>You can have a look at the ingestion job running in NiFi by opening the given <code>nifi</code> endpoint <code>https</code> from your <code>stackablectl services list</code> command output (<a href="https://217.160.120.117:31499" class="bare">https://217.160.120.117:31499</a> in this case).
+If you get a warning regarding the self-signed certificate generated by the <a href="../../../secret-operator/stable/index.html" class="xref page">Secret Operator</a> (e.g. <code>Warning: Potential Security Risk Ahead</code>), you have to tell your browser to trust the website and continue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/nifi_1.png" alt="nifi 1">
+</div>
+</div>
+<div class="paragraph">
+<p>Log in with the username <code>admin</code> and password <code>adminadmin</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/nifi_2.png" alt="nifi 2">
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, the NiFi workflow consists of lots of components.
+You can zoom in by using your mouse and mouse wheel.
+On the left side are two strands, that</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fetch the list of known water-level stations and ingest them into Kafka</p>
+</li>
+<li>
+<p>Continuously run a loop fetching the measurements of the last 30 for every measuring station and ingesting the measurements into Kafka</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On the right side are three strands, that</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fetch the current shared bike stations information</p>
+</li>
+<li>
+<p>Fetch the current shared bike stations status</p>
+</li>
+<li>
+<p>Fetch the current shared bike bike status</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For details on the NiFi workflow ingesting water-level data please read on the <a href="nifi-kafka-druid-water-level-data.html#_nifi" class="xref page">nifi-kafka-druid-water-level-data documentation on NiFi</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spark"><a class="anchor" href="#_spark"></a>Spark</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html">Spark Structured Streaming</a> is used to stream data from Kafka into the warehouse.</p>
+</div>
+<div class="paragraph">
+<p>To have access to the Spark WebUI you need to run the following command to port-forward the Port 4040 to your local machine</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">kubectl port-forward $(kubectl get pod -o name | grep 'spark-ingest-into-warehouse-.*-driver') 4040</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Afterwards you can reach the Webinterface on <a href="http://localhost:4040" class="bare">http://localhost:4040</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/spark_1.png" alt="spark 1">
+</div>
+</div>
+<div class="paragraph">
+<p>On the UI the last jobs are shown.
+Each running Structured Streaming job creates lots of Spark jobs internally.</p>
+</div>
+<div class="paragraph">
+<p>Click on the tab <code>Structured Streaming</code> to see the running streaming jobs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/spark_2.png" alt="spark 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Five streaming jobs are currently running.
+The job with the highest throughput is the <code>ingest water_level measurements</code> job.
+Click on the <code>Run ID</code> highlighted in blue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/spark_3.png" alt="spark 3">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_trino"><a class="anchor" href="#_trino"></a>Trino</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Trino is used to enable SQL access to the data.</p>
+</div>
+<div class="sect2">
+<h3 id="_view_webui"><a class="anchor" href="#_view_webui"></a>View WebUI</h3>
+<div class="paragraph">
+<p>Open up the the given <code>trino</code> endpoint <code>coordinator-https</code> from your <code>stackablectl services list</code> command output (<a href="https://212.227.224.138:30876" class="bare">https://212.227.224.138:30876</a> in this case).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/trino_1.png" alt="trino 1">
+</div>
+</div>
+<div class="paragraph">
+<p>Log in with the username <code>admin</code> and password <code>admin</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/trino_2.png" alt="trino 2">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_connect_with_dbeaver"><a class="anchor" href="#_connect_with_dbeaver"></a>Connect with DBeaver</h3>
+<div class="paragraph">
+<p><a href="https://dbeaver.io/">DBeaver</a> is free multi-platform database tool that can be used to connect to Trino.
+Please have a look at the &lt;TODO&gt; trino-operator documentation on how to connect DBeaver to Trino.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/dbeaver_1.png" alt="dbeaver 1">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/dbeaver_2.png" alt="dbeaver 2">
+</div>
+</div>
+<div class="paragraph">
+<p>You need to modify the setting <code>TLS</code> to <code>true</code>.
+Additionally you need to add the setting <code>SSLVerification</code> and set it to <code>NONE</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/dbeaver_3.png" alt="dbeaver 3">
+</div>
+</div>
+<div class="paragraph">
+<p>Here you can see all the available Trino catalogs.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>staging</code>: The staging area containing raw data in various data formats such as CSV or Parquet</p>
+</li>
+<li>
+<p><code>system</code>: Internal catalog to retrieve Trino internals</p>
+</li>
+<li>
+<p><code>tpcds</code>: <a href="https://trino.io/docs/current/connector/tpcds.html">TPCDS connector</a> providing a set of schemas to support the <a href="http://www.tpc.org/tpcds/">TPC Benchmark™ DS</a></p>
+</li>
+<li>
+<p><code>tpch</code>: <a href="https://trino.io/docs/current/connector/tpch.html">TPCH connector</a> providing a set of schemas to support the <a href="http://www.tpc.org/tpcds/">TPC Benchmark™ DS</a></p>
+</li>
+<li>
+<p><code>warehouse</code>: The warehouse area containing the enriched and performant accessible data</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_superset"><a class="anchor" href="#_superset"></a>Superset</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Superset provides the ability to execute SQL queries and build dashboards.
+Open the <code>superset</code> endpoint <code>external-superset</code> in your browser (<a href="http://212.227.233.47:32393" class="bare">http://212.227.233.47:32393</a> in this case).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_1.png" alt="superset 1">
+</div>
+</div>
+<div class="paragraph">
+<p>Log in with the username <code>admin</code> and password <code>admin</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_2.png" alt="superset 2">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_view_dashboard"><a class="anchor" href="#_view_dashboard"></a>View dashboard</h3>
+<div class="paragraph">
+<p>The demo has created dashboards to visualize the different data sources.
+To the dashboards click on the tab <code>Dashboards</code> at the top.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_3.png" alt="superset 3">
+</div>
+</div>
+<div class="paragraph">
+<p>Click on the dashboard called <code>House sales</code>.
+It might take some time until the dashboards renders all the included charts.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_4.png" alt="superset 4">
+</div>
+</div>
+<div class="paragraph">
+<p>Another dashboard to look at is <code>Earthquakes</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_5.png" alt="superset 5">
+</div>
+</div>
+<div class="paragraph">
+<p>Another dashboard to look at is <code>Taxi trips</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_6.png" alt="superset 6">
+</div>
+</div>
+<div class="paragraph">
+<p>There are multiple other dashboards you can explore on you own.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_view_charts"><a class="anchor" href="#_view_charts"></a>View charts</h3>
+<div class="paragraph">
+<p>The dashboards consists of multiple charts.
+To list the charts click on the tab <code>Charts</code> at the top.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_arbitrary_sql_statements"><a class="anchor" href="#_execute_arbitrary_sql_statements"></a>Execute arbitrary SQL statements</h3>
+<div class="paragraph">
+<p>Within Superset you can not only create dashboards but also run arbitrary SQL statements.
+On the top click on the tab <code>SQL Lab</code> &#8594; <code>SQL Editor</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_7.png" alt="superset 7">
+</div>
+</div>
+<div class="paragraph">
+<p>On the left select the database <code>Trino warehouse</code>, the schema <code>house_sales</code> and set <code>See table schema</code> to <code>house_sales</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_8.png" alt="superset 8">
+</div>
+</div>
+<div class="paragraph">
+<p>On the right textbox enter the desired SQL statement.
+If you do not want to make one up, you can use the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select city, sum(price) as sales
+from house_sales
+group by 1
+order by 2 desc</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-data-warehouse-iceberg-trino-spark/superset_9.png" alt="superset 9">
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

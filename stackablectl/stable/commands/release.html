@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Release :: Stackable Documentation</title>
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="stackablectl" data-version="nightly">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../index.html">stackablectl</a></h3>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commands</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="demo.html">Demo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="operator.html">Operator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="release.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services.html">Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="stack.html">Stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../demos/index.html">Demos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demos/airflow-scheduled-job.html">airflow-scheduled-job</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demos/data-warehouse-iceberg-trino-spark.html">data-warehouse-iceberg-trino-spark</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demos/hbase-hdfs-load-cycling-data.html">hbase-hdfs-cycling-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demos/nifi-kafka-druid-earthquake-data.html">nifi-kafka-druid-earthquake-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demos/nifi-kafka-druid-water-level-data.html">nifi-kafka-druid-water-level-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demos/trino-taxi-data.html">trino-taxi-data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../customization.html">Customization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">stackablectl</span>
+    <span class="version">nightly</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">stackablectl</a></li>
+    <li>Commands</li>
+    <li><a href="release.html">Release</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/stackablectl/edit/main/docs/modules/ROOT/pages/commands/release.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Release</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A release is a bundle of operators of a specific stable version. The stable versions of the operators are tested and proven to work hand in hand.
+If you want to install a single individual operator, have a look at the <a href="operator.html" class="xref page">Operator</a> command.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_browse_available_releases"><a class="anchor" href="#_browse_available_releases"></a>Browse available releases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To list the available Stackable releases run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl release list
+RELEASE            RELEASE DATE   DESCRIPTION
+22.06              2022-06-30     First official release of the Stackable Data Platform</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Detailed information of a release can be queried with the <code>describe</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl release describe 22.06
+Release:            22.06
+Release date:       2022-06-30
+Description:        First official release of the Stackable Data Platform
+Included products:
+
+PRODUCT             OPERATOR VERSION
+airflow             0.4.0
+commons             0.2.0
+druid               0.6.0
+hbase               0.3.0
+hdfs                0.4.0
+hive                0.6.0
+kafka               0.6.0
+nifi                0.6.0
+opa                 0.9.0
+secret              0.5.0
+spark-k8s           0.3.0
+superset            0.5.0
+trino               0.4.0
+zookeeper           0.10.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the output you can see which product operators are included in the specific release.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_release"><a class="anchor" href="#_install_release"></a>Install release</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want to access a Kubernetes cluster, make sure your <a href="https://kubernetes.io/docs/tasks/tools/#kubectl"><code>kubectl</code></a> Kubernetes client is configured to interact with the Kubernetes cluster.
+After that run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl release install 22.06
+[INFO ] Installing release 22.06
+[INFO ] Installing airflow operator in version 0.4.0
+[INFO ] Installing commons operator in version 0.2.0
+[INFO ] Installing druid operator in version 0.6.0
+[INFO ] Installing hbase operator in version 0.3.0
+[INFO ] Installing hdfs operator in version 0.4.0
+[INFO ] Installing hive operator in version 0.6.0
+[INFO ] Installing kafka operator in version 0.6.0
+[INFO ] Installing nifi operator in version 0.6.0
+[INFO ] Installing opa operator in version 0.9.0
+[INFO ] Installing secret operator in version 0.5.0
+[INFO ] Installing spark-k8s operator in version 0.3.0
+[INFO ] Installing superset operator in version 0.5.0
+[INFO ] Installing trino operator in version 0.4.0
+[INFO ] Installing zookeeper operator in version 0.10.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have a Kubernetes cluster available, <code>stackablectl</code> can spin up a <a href="https://kind.sigs.k8s.io/">kind</a> Kubernetes cluster for you.
+Make sure you have <code>kind</code> installed and run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl release install 22.06 --kind-cluster
+[INFO ] Creating kind cluster stackable-data-platform
+Creating cluster "stackable-data-platform" ...
+ ✓ Ensuring node image (kindest/node:v1.21.1) 🖼
+ ✓ Preparing nodes 📦 📦 📦 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+ ✓ Joining worker nodes 🚜
+Set kubectl context to "kind-stackable-data-platform"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-stackable-data-platform
+
+Have a nice day! 👋
+[INFO ] Installing release 22.06
+[INFO ] Installing airflow operator in version 0.4.0
+[INFO ] Installing commons operator in version 0.2.0
+[INFO ] Installing druid operator in version 0.6.0
+[INFO ] Installing hbase operator in version 0.3.0
+[INFO ] Installing hdfs operator in version 0.4.0
+[INFO ] Installing hive operator in version 0.6.0
+[INFO ] Installing kafka operator in version 0.6.0
+[INFO ] Installing nifi operator in version 0.6.0
+[INFO ] Installing opa operator in version 0.9.0
+[INFO ] Installing secret operator in version 0.5.0
+[INFO ] Installing spark-k8s operator in version 0.3.0
+[INFO ] Installing superset operator in version 0.5.0
+[INFO ] Installing trino operator in version 0.4.0
+[INFO ] Installing zookeeper operator in version 0.10.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After installing the release we can list the running operators with the <a href="operator.html" class="xref page">Operator</a> command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl operator installed
+OPERATOR              VERSION         NAMESPACE                      STATUS           LAST UPDATED
+airflow               0.4.0           default                        deployed         2022-07-15 10:00:25.499615024 +0200 CEST
+commons               0.2.0           default                        deployed         2022-07-15 10:00:27.868162264 +0200 CEST
+druid                 0.6.0           default                        deployed         2022-07-15 10:00:38.219966654 +0200 CEST
+hbase                 0.3.0           default                        deployed         2022-07-15 10:00:46.581528077 +0200 CEST
+hdfs                  0.4.0           default                        deployed         2022-07-15 10:00:56.949394849 +0200 CEST
+hive                  0.6.0           default                        deployed         2022-07-15 10:01:07.314849464 +0200 CEST
+kafka                 0.6.0           default                        deployed         2022-07-15 10:01:09.702246063 +0200 CEST
+nifi                  0.6.0           default                        deployed         2022-07-15 10:01:12.059869868 +0200 CEST
+opa                   0.9.0           default                        deployed         2022-07-15 10:01:14.413966761 +0200 CEST
+secret                0.5.0           default                        deployed         2022-07-15 10:01:16.759818535 +0200 CEST
+spark-k8s             0.3.0           default                        deployed         2022-07-15 10:01:17.149187107 +0200 CEST
+superset              0.5.0           default                        deployed         2022-07-15 10:01:19.529351352 +0200 CEST
+trino                 0.4.0           default                        deployed         2022-07-15 10:01:29.867283641 +0200 CEST
+zookeeper             0.10.0          default                        deployed         2022-07-15 10:01:40.24662955 +0200 CEST</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_uninstall_release"><a class="anchor" href="#_uninstall_release"></a>Uninstall release</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To uninstall all operators contained in a release regardless of their actual installed versions, you can use the uninstall command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl release uninstall 22.06
+[INFO ] Uninstalling release 22.06
+[INFO ] Uninstalling airflow operator
+[INFO ] Uninstalling commons operator
+[INFO ] Uninstalling druid operator
+[INFO ] Uninstalling hbase operator
+[INFO ] Uninstalling hdfs operator
+[INFO ] Uninstalling hive operator
+[INFO ] Uninstalling kafka operator
+[INFO ] Uninstalling nifi operator
+[INFO ] Uninstalling opa operator
+[INFO ] Uninstalling secret operator
+[INFO ] Uninstalling spark-k8s operator
+[INFO ] Uninstalling superset operator
+[INFO ] Uninstalling trino operator
+[INFO ] Uninstalling zookeeper operator</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

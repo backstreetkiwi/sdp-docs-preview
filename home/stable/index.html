@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Stackable Documentation :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/home/stable/index.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search..." autofocus>
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="index.html">Home</a>
+<a class="navbar-sub-item" href="getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+    <div class="body">
+        <div class="container">
+            <main class="article">
+            <div class="content">
+                <article class="doc landing">
+                <h1 class="page">Stackable Documentation</h1>
+                <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to Stackable!
+This documentation gives you an overview of the Stackable Data Platform, how to install and manage it as well as some tutorials.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Our third release - November 2022</div>
+<div class="paragraph">
+<p>We are proud to announce our third public release!</p>
+</div>
+<div class="paragraph">
+<p>Please read the <a href="release_notes.html" class="xref page">release notes</a> to read up on the details.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<br>
+<div class="boxes two-column">
+<div class="box">
+<h3>Introduction</h3>
+<div class="paragraph">
+<p>The Stackable Data Platform allows you to deploy, scale and manage Data infrastructure in any environment running <a href="https://kubernetes.io/">Kubernetes</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can find an overview of the supported components <a href="#_components">below</a>, as well as a full list of all supported product versions <a href="operators/supported_versions.html" class="xref page">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you have any feedback regarding the documentation please either open an <a href="https://github.com/stackabletech/documentation/issues">issue</a>, ask a <a href="https://github.com/stackabletech/documentation/discussions">question</a> or look at the source for this documentation in its <a href="https://github.com/stackabletech/documentation">repository</a>.</p>
+</div>
+</div>
+<div class="box">
+<h3>Goal of the project</h3>
+<div class="paragraph">
+<p>We are building a distribution of existing Open Source tools that together comprise the components of a modern data platform.</p>
+</div>
+<div class="paragraph">
+<p>There are components to ingest data, to store data, to process and visualize and much more.
+While the platform got started in the <em>Big Data</em> ecosystem we are in no way limited to big data workloads.</p>
+</div>
+<div class="paragraph">
+<p>You can declaratively build these environments, and we don&#8217;t stop at the tool level as we also provide ways for the users to interact with the platform in the "as Code"-approach.</p>
+</div>
+<div class="paragraph">
+<p>We are leveraging the <a href="https://www.openpolicyagent.org/">Open Policy Agent</a> to provide Security-as-Code.</p>
+</div>
+<div class="paragraph">
+<p>We are building a distribution that includes the “best of breed” of existing Open Source tools, but bundles them in a way, so it is easy to deploy a fully working stack of software. Most of the existing tools are “single purpose” tools, which often do not play nicely together out-of-the-box.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_components"><a class="anchor" href="#_components"></a>Components</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We are using Kubernetes as our deployment platform.
+And we&#8217;re building <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Operators</a> for each of the products we support.</p>
+</div>
+<div class="paragraph">
+<p>The Stackable Data Platform supports the following products:</p>
+</div>
+<br>
+<div class="boxes">
+<div class="box">
+<h3 id="airflow"><a class="anchor" href="#airflow"></a>Apache Airflow</h3>
+<div class="paragraph">
+<p>Airflow is a workflow engine and your replacement should you be using Apache Oozie.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../airflow/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="druid"><a class="anchor" href="#druid"></a>Apache Druid</h3>
+<div class="paragraph">
+<p>Apache Druid is a real-time database to power modern analytics applications.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../druid/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="hbase"><a class="anchor" href="#hbase"></a>Apache HBase</h3>
+<div class="paragraph">
+<p>HBase is a distributed, scalable, big data store.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../hbase/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="hdfs"><a class="anchor" href="#hdfs"></a>Apache Hadoop HDFS</h3>
+<div class="paragraph">
+<p>HDFS is a distributed file system that provides high-throughput access to application data.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../hdfs/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="hive"><a class="anchor" href="#hive"></a>Apache Hive</h3>
+<div class="paragraph">
+<p>The Apache Hive data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage using SQL. We support the Hive Metastore.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../hive/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="kafka"><a class="anchor" href="#kafka"></a>Apache Kafka</h3>
+<div class="paragraph">
+<p>Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../kafka/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="nifi"><a class="anchor" href="#nifi"></a>Apache NiFi</h3>
+<div class="paragraph">
+<p>An easy to use, powerful, and reliable system to process and distribute data.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../nifi/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="spark"><a class="anchor" href="#spark"></a>Apache Spark</h3>
+<div class="paragraph">
+<p>Apache Spark is a multi-language engine for executing data engineering, data science, and machine learning on single-node machines or clusters.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../spark-k8s/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="superset"><a class="anchor" href="#superset"></a>Apache Superset</h3>
+<div class="paragraph">
+<p>Apache Superset is a modern data exploration and visualization platform.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../superset/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="trino"><a class="anchor" href="#trino"></a>Apache Trino</h3>
+<div class="paragraph">
+<p>Fast distributed SQL query engine for big data analytics that helps you explore your data universe.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../trino/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+<div class="box">
+<h3 id="zookeeper"><a class="anchor" href="#zookeeper"></a>Apache ZooKeeper</h3>
+<div class="paragraph">
+<p>ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../zookeeper/stable/index.html" class="xref page">Read more</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+                                </article>
+            </div>
+            </main>
+        </div>
+    </div>
+<footer class="footer">
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

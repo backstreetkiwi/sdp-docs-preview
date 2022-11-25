@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ADR024: How to provide stable out-of-cluster access to products :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/home/stable/contributor/adr/ADR024-out-of-cluster_access.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+    <script>var uiRootPath = '../../../../_'</script>
+    <link rel="icon" href="../../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="home" data-version="nightly">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../../index.html">Stackable Documentation</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">nightly</button>
+        <div class="version-menu">
+          <a class="version is-current" href="ADR024-out-of-cluster_access.html">nightly</a>
+          <a class="version" href="../../../stable/contributor/adr/ADR024-out-of-cluster_access.html">22.11</a>
+          <a class="version" href="../../../22.09/contributor/adr/ADR024-out-of-cluster_access.html">22.09</a>
+          <a class="version is-missing" href="../../../22.06/index.html">22.06</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../getting_started.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../concepts/index.html">Concepts</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/roles-and-role-groups.html">Roles and role groups</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/service_discovery.html">Service discovery ConfigMap</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/opa.html">OPA authorization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/s3.html">S3 resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/pvc.html">PersistentVolumeClaim usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/resources.html">Resource management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../tutorials/index.html">Tutorials</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../tutorials/end-to-end_data_pipeline_example.html">Setting up an end-to-end data pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../reference/index.html">Reference</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../reference/s3.html">S3 resources</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operators/index.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operators/supported_versions.html">Supported Product Versions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operators/monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../airflow/stable/index.html">Apache Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../druid/stable/index.html">Apache Druid</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../hbase/stable/index.html">Apache HBase</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../hive/stable/index.html">Apache Hive</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../kafka/stable/index.html">Apache Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../nifi/stable/index.html">Apache NiFi</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../superset/stable/index.html">Apache Superset</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../trino/stable/index.html">Trino</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../opa/stable/index.html">OpenPolicyAgent</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../commons-operator/stable/index.html">Commons</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../secret-operator/stable/index.html">Secret</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Contributor&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../steps.html">Steps to contribute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../development_dashboard.html">Development Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../style_guide.html">Documentation style guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Implementation guidelines</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../service_discovery.html">Service discovery implementation guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../opa_configuration.html">OPA connection implementation guidelines</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Architectural Decision Records</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Current</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR001-choose_project_language.html">ADR001: Use English as Documentation Language</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR002-choose_repository_structure.html">ADR002: Use Multiple Repositories instead of one Large Repository</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR003-choose_review_mechanism.html">ADR003: Use RTC as Review Mechanism for Changes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR004-choose_agent_programming_language.html">ADR004: Use Rust as programming language for the agent</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR005-systemd_unit_file_location.html">ADR005: Decide on handling and location of systemd unit files</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR007-defined_reuse_of_k8s.html">ADR007: Decide if Kubernetes Components Are to be Reused for Stackable</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR008-decide_reuse_of_operators.html">ADR008: Allow Reuse of Existing Kubernetes Operators</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR009-selector_support.html">ADR009: Assigning Services to Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR010-command_pattern.html">ADR010: Expressing one-shot commands in a Kubernetes-native way</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR011-directory_structure.html">ADR011: Directory Structure Used by Stackable Components on Managed Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR012-authn_token_management.html">ADR012: Authentication token management</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR013-supported_kubernetes_versions.html">ADR013: Supported Kubernetes versions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR014-user_authentication_for_products.html">ADR014: User Authentication for Products</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR015-using_values_from_configmaps.html">ADR015: How Should Operators Use Values from ConfigMaps &amp; Secrets</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR016-definition_of_s3_objects.html">ADR016: Representation of S3 Buckets in CRDs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR017-tls_authentication.html">ADR017: TLS authentication</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR018-product_image_versioning.html">ADR018: Product Image Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR019-trino_catalog_definitions.html">ADR019: Trino catalog definitions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR020-trino_catalog_usage.html">ADR020: Trino catalog usage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR021-stackablectl_stacks_inital_version.html">ADR021: Initial Version of Stackable Stacks Functionality</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR022-spark-history-server.html">ADR022: Spark history server</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR023-product-image-selection.html">ADR023: Product image selection</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="ADR024-out-of-cluster_access.html">ADR024: How to provide stable out-of-cluster access to products</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deprecated</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="deprecated/ADR006-choose_orchestrator_storage_backend.html">Use xxx as storage backend for the orchestrator</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Drafts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="drafts/ADRx-choose_authorization_engine.html">Choose Authorization Engine</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../release_notes.html">Release Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Documentation</span>
+    <span class="version">nightly</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../../stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../../index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Stackable Documentation</a></li>
+    <li><a href="../index.html">Contributor&#8217;s Guide</a></li>
+    <li><a href="index.html">Architectural Decision Records</a></li>
+    <li>Current</li>
+    <li><a href="ADR024-out-of-cluster_access.html">ADR024: How to provide stable out-of-cluster access to products</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/felix/repos/documentation/modules/contributor/pages/adr/ADR024-out-of-cluster_access.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">ADR024: How to provide stable out-of-cluster access to products</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Status: accepted</p>
+</li>
+<li>
+<p>Deciders:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Teo Klestrup Röijezon</p>
+</li>
+<li>
+<p>Felix Hennig</p>
+</li>
+<li>
+<p>Vladislav Supalov</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Date: 2022-09-06</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Technical Story: <a href="https://github.com/stackabletech/listener-operator/pull/1" class="bare">https://github.com/stackabletech/listener-operator/pull/1</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context_and_problem_statement"><a class="anchor" href="#_context_and_problem_statement"></a>Context and Problem Statement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Eventually, the products we host in Kubernetes will need to be accessed from outside of the cluster, as this is where the client is. Our current solution for this is NodePort services. They are a simple and common solution for on-premise clusters, where nodes are reachable hosts in the local network. To get traffic into a Kubernetes cluster that runs in a public cloud, NodePorts do not work; instead LoadBalancers are the preferred solution.</p>
+</div>
+<div class="paragraph">
+<p>While a Pods name is stable across restarts and rescheduling, the IP of the NodePort can change if a Pod is rescheduled to a different node. This means that external addresses from simple NodePorts are not stable. LoadBalancers are not tied to nodes, but they are often not available in on-prem clusters.
+At the moment we deploy NodePort Services per RoleGroup; clients cannot connect to an individual Pod in a RoleGroup.
+Some products need to be able to link to <em>specific</em> replicas in a StatefulSet, as they shard data across process instances, across nodes. Therefore the nodes need to also be individually reachable from outside of the cluster.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, Pods currently do not know the address under which they are reachable from outside of the cluster, no matter if NodePorts or LoadBalancers are used. While this is not a problem for simple web UIs, it is a problem for products that do their own "routing", like HDFS or Kafka. These products will link to other nodes to point clients to specific data that only exists in specific nodes. These links cannot be constructed if the addresses under which nodes are reachable are not known to the product.</p>
+</div>
+<div class="paragraph">
+<p>Problems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unstable addresses</strong> - Clients need stable addresses to connect to, but Kubernetes can move pods around. While the discovery ConfigMap is updated, it&#8217;s not feasible to ask the client to pull the new info from there every time, clients will want to use static config files with static addresses to connect to.</p>
+</li>
+<li>
+<p><strong>Replicas not addressable</strong> - In our current setup, there&#8217;s no way to connect to a specific replica in a StatefulSet or Deployement - which is necessary for cases like the data nodes of HDFS.</p>
+</li>
+<li>
+<p><strong>Pods don&#8217;t know their outside address</strong> - The hostname and IP that the pods know about themselves is from <em>inside</em> the cluster. The IP only works inside the overlay network. This means ProductCluster processes cannot link to other nodes of the cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decision_drivers"><a class="anchor" href="#_decision_drivers"></a>Decision Drivers</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>At least for HDFS, connections to individual pods will be used to transmit data, this means that performance is relevant.</p>
+</li>
+<li>
+<p>On-prem customers will often not have any kind of network-level load balancing (at least not one that is configurable by K8s).</p>
+</li>
+<li>
+<p>Cloud customers will often have relatively short-lived K8s nodes.</p>
+</li>
+<li>
+<p>The solution should be minimally invasive - no large setups required outside of the cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_considered_options"><a class="anchor" href="#_considered_options"></a>Considered Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Off-the-shelf solutions were briefly spiked, but discarded due to requiring complex setup and/or heavy out-of-cluster dependencies which were deemed unacceptable to require from customers. Brief notes on this can be found in <a href="#_spiked_alternatives">Spiked Alternatives</a> below.</p>
+</div>
+<div class="paragraph">
+<p>The other alternative is a custom solution to be implemented by us. It is outlined below.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implemented_solution"><a class="anchor" href="#_implemented_solution"></a>Implemented Solution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A new resource is proposed: Listener. It is handled similarly to storage. There is are ListenerClasses for different types of Listeners - analogous to StorageClass. There are Listener objects - similar to PersistentVolumes. And claims to listeners are made in ProductCluster objects.</p>
+</div>
+<div class="paragraph">
+<p>This is an example of a NodePort ListenerClass useful for an on-prem cluster:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: listener.stackable.tech/v1alpha1
+kind: ListenerClass
+metadata:
+  name: public
+spec:
+  serviceType: NodePort</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is what an internal Listener in a GKE cluster could look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: listener.stackable.tech/v1alpha1
+kind: ListenerClass
+metadata:
+  name: internal
+spec:
+  serviceType: LoadBalancer
+  serviceAnnotations:
+    networking.gke.io/load-balancer-type: Internal</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ListenerClasses allow for various different ways of getting outside traffic into the cluster. A dedicated operator seperates the deployment of this out - the product operators need to only request the listeners.</p>
+</div>
+<div class="paragraph">
+<p>Requests for Listeners are made through annotated volume claim templates:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-public-pod
+spec:
+  volumes:
+    - name: listener
+      ephemeral: <i class="conum" data-value="1"></i><b>(1)</b>
+        volumeClaimTemplate:
+          metadata:
+            annotations:
+              listener.stackable.tech/listener-class: public <i class="conum" data-value="2"></i><b>(2)</b>
+          spec:
+            storageClassName: listener.stackable.tech
+            accessModes:
+              - ReadWriteMany
+            resources:
+              requests:
+                storage: "1"
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - name: listener
+          mountPath: /listener <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Under the hood a listener-operator runs as a CSI driver with a new <code>listener.stackable.tech</code> type. It provides a volume with files that provide information to the pod about the listener 3. When requesting the volume, whether the volume is <code>ephemeral</code> or <code>persistent</code> 1 defines whether the listener should be sticky or not. Through annotations 2 it is defined whether the listener is public or not.</p>
+</div>
+<div class="paragraph">
+<p>Inside a ProductCluster CRD there will be a new setting inside RoleGroups:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">...
+  spec:
+    myRole:
+      default:
+        listenerClassName: public</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The product operator will use this as well as its own knowledge whether the role of this product requires sticky addresses to configure the PVC accordingly as seen above.</p>
+</div>
+<div class="paragraph">
+<p>Communication flow example using the HDFS Operator, assuming we&#8217;re operating in an on-prem cluster:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A HDFS cluster resource is created by the user, with a <code>public</code> listenerClassName for all roles.</p>
+</li>
+<li>
+<p>The HDFS Operator requests a PVC of the listener.stackable.tech type and an annotation to create a <code>public</code> listener. For Namenodes it requests sticky addresses, and for data nodes ephemeral addresses.</p>
+</li>
+<li>
+<p>The listener-operator provisions a NodePort Service for every volume request. This means a NodePort service per Pod. It reads the NodePort IP and port.</p>
+</li>
+<li>
+<p>The listener-operator provisions the volumes with files inside containing information about the pods outside address and port - The IP and port of the NodePort Service. Because of the PVC it knows which pod the volume will be mounted into, and can find out the NodePort that belongs to the pod.</p>
+</li>
+<li>
+<p>the HDFS operator already provisioned the pod with a script that read the files from the mounted volume into environment variables which are then read by HDFS. This part is product specific.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>How are the problems in the <a href="#_context_and_problem_statement">Problem Statement</a> addressed?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unstable Addresses</strong> - Using a CSI driver and mounting in storage lets us manage stickiness. Any new pods after a pod is deleted will be created on the same node as the old pod - and thus also reuse the NodePort and the address it has, should the volume be configured to be sticky to the node.</p>
+</li>
+<li>
+<p><strong>Replicas not addressable</strong> - Since every replica in a StatefulSet will have its own Listener, they are also individually addressable.</p>
+</li>
+<li>
+<p><strong>Pods don&#8217;t know their outside address</strong> - The outside address of a pod gets passed into the pod through the mounted volume. The pod then knows its outside address.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_how_are_external_ips_retrieved_by_the_listener_operator"><a class="anchor" href="#_how_are_external_ips_retrieved_by_the_listener_operator"></a>How are external IPs retrieved by the listener operator?</h3>
+<div class="paragraph">
+<p>For LoadBalancers, the IPs are written back into the Service object (by the third-party load balancer controller), which are then taken from there.</p>
+</div>
+<div class="paragraph">
+<p>For NodePorts, for each Pod the IP of the Node the Pod is running on is taken.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_does_a_client_connect"><a class="anchor" href="#_how_does_a_client_connect"></a>How does a client connect?</h3>
+<div class="paragraph">
+<p>This depends on the location of the cluster and which type of listener was deployed. In the example above NodePorts were used. In that case an initial connection to HDFS is made through a NodePort, the address and port are found in the HDFS <a href="../../concepts/service_discovery.html" class="xref page">Service discovery ConfigMap</a>. Through the mechanism described above, any addresses of other nodes that HDFS gives to the client will be NodePort addresses, so subsequent connections will go through the NodePorts too.</p>
+</div>
+<div class="paragraph">
+<p>In a GCP Kubernetes cluster, one might instead use a listener of type LoadBalancer. This will then deploy a LoadBalancer with a Google Backend, and traffic can enter the cluster through there. Again, the initial connection information needs to be taken from the discovery ConfigMap.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_about_node_failure"><a class="anchor" href="#_what_about_node_failure"></a>What about node failure?</h3>
+<div class="paragraph">
+<p>It depends on the type of listener that is used. If a LoadBalancer is used, the pods that were on the now failed node will just be started again on a different node, and Kubernetes will wire everything up again.</p>
+</div>
+<div class="paragraph">
+<p>If NodePorts are used, it depends on whether the Listeners are sticky or not (implemented with ephemeral or persistent mounted volumes). If the Listener is not sticky, the Pod can be moved to a different Node. If the Listener is sticky, the Pod will not be able to start until the Node recovers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_will_it_still_be_possible_to_use_a_loadbalancer_per_role_if_individual_replica_access_is_not_required"><a class="anchor" href="#_will_it_still_be_possible_to_use_a_loadbalancer_per_role_if_individual_replica_access_is_not_required"></a>Will it still be possible to use a LoadBalancer per role, if individual replica access is not required?</h3>
+<div class="paragraph">
+<p>Yes. There is a 1:1 mapping of listener PVCs to deployed listeners. It is possible to pre-provision a listener PVCs for a role and then mount it into each role replica.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_the_name_came_to_be"><a class="anchor" href="#_how_the_name_came_to_be"></a>How the name came to be</h3>
+<div class="paragraph">
+<p>The new operator handles resources related to bringing outside traffic into the cluster. Some words that come to mind were Ingress and Gateway, but they are already used by Kubernetes native objects. Initially LoadBalancer-operator was considered, but since it doesn&#8217;t exclusively deploy LoadBalancer objects (also NodePorts), the name is not good.</p>
+</div>
+<div class="paragraph">
+<p>Listener describes well its functionality: It is listening for outside traffic. Also, the name is not taken in Kubernetes yet.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decision_outcome"><a class="anchor" href="#_decision_outcome"></a>Decision Outcome</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is only one design, which is already in its implementation.</p>
+</div>
+<div class="paragraph">
+<p>Pros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There is little routing overhead (compared to proxying or similar).</p>
+</li>
+<li>
+<p>The listener-operator can be extended to support more types of ListenerClasses.</p>
+</li>
+<li>
+<p>It is a very low-friction solution that doesn&#8217;t require a lot of permissions to set up.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The processes of some products like HDFS and Kafka assume that they are only reachable under one specific address. They cannot, for example, use one network for internal communication and a different network for external communication. This means that if outside access with the listener operator is configured, all traffic will be routed that way, also internal traffic that would not need to be routed out of the cluster.</p>
+</li>
+<li>
+<p>This operator is deployed as a <code>DaemonSet</code> , which means it adds a small amount of overhead on all nodes inside the cluster and to the control plane&#8217;s api server.</p>
+</li>
+<li>
+<p>Such an operator cannot be deployed using OpenShift&#8217;s Operator Lifecycle Manager and consequently cannot be certified on that platform.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spiked_alternatives"><a class="anchor" href="#_spiked_alternatives"></a>Spiked Alternatives</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some notes about the briefly tested off-the-shelf solutions.</p>
+</div>
+<div class="sect2">
+<h3 id="_metallb"><a class="anchor" href="#_metallb"></a>MetalLB</h3>
+<div class="paragraph">
+<p><a href="https://metallb.universe.tf/">MetalLB</a> is a bare metal load balancer that was spiked briefly. However it requires BGP/ARP integration, which is not feasible as a requirement for customer installations.</p>
+</div>
+<div class="paragraph">
+<p>With ARP, the LoadBalancers appear as "real" IP addresses in the same subnet as the nodes (with no need to configure custom routing roules). However, this scales poorly (it assumes that all nodes are in the same L2 broadcast domain) and is relatively likely to be blocked by firewalls or network policy.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_calico"><a class="anchor" href="#_calico"></a>Calico</h3>
+<div class="paragraph">
+<p><a href="https://www.tigera.io/project-calico/">Calico</a> requires BGP, another component that we cannot make required for customer setups.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../../_/js/site.js"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../.." data-snippet-length="100" data-stylesheet="../../../../_/css/search.css"></script>
+<script async src="../../../../search-index.js"></script>
+  </body>
+</html>

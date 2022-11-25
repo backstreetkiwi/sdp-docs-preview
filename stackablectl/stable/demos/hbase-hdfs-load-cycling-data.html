@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>hbase-hdfs-cycling-data :: Stackable Documentation</title>
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="stackablectl" data-version="nightly">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../index.html">stackablectl</a></h3>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commands</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/demo.html">Demo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/operator.html">Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/release.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/services.html">Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/stack.html">Stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Demos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="airflow-scheduled-job.html">airflow-scheduled-job</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="data-warehouse-iceberg-trino-spark.html">data-warehouse-iceberg-trino-spark</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="hbase-hdfs-load-cycling-data.html">hbase-hdfs-cycling-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nifi-kafka-druid-earthquake-data.html">nifi-kafka-druid-earthquake-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nifi-kafka-druid-water-level-data.html">nifi-kafka-druid-water-level-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="trino-taxi-data.html">trino-taxi-data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../customization.html">Customization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">stackablectl</span>
+    <span class="version">nightly</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">stackablectl</a></li>
+    <li><a href="index.html">Demos</a></li>
+    <li><a href="hbase-hdfs-load-cycling-data.html">hbase-hdfs-cycling-data</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/stackablectl/edit/main/docs/modules/ROOT/pages/demos/hbase-hdfs-load-cycling-data.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">hbase-hdfs-cycling-data</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This guide assumes that you already have the demo <code>hbase-hdfs-load-cycling-data</code> installed.
+If you don&#8217;t have it installed please follow the <a href="../commands/demo.html#_install_demo" class="xref page">documentation on how to install a demo</a>.
+To put it simply you have to run <code>stackablectl demo install hbase-hdfs-load-cycling-data</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This demo will</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install the required Stackable operators</p>
+</li>
+<li>
+<p>Spin up the follow data products</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Hbase</strong>: A open source distributed scalable, big data store. This demos uses it to store the <a href="https://www.kaggle.com/datasets/timgid/cyclistic-dataset-google-certificate-capstone?select=Divvy_Trips_2020_Q1.csv">cyclistic dataset</a> and enable access to it</p>
+</li>
+<li>
+<p><strong>HDFS</strong>: A distributed file system used to intermediately store the dataset before importing it into Hbase</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use <a href="https://hadoop.apache.org/docs/stable/hadoop-distcp/DistCp.html">distcp</a> to copy a <a href="https://www.kaggle.com/datasets/timgid/cyclistic-dataset-google-certificate-capstone?select=Divvy_Trips_2020_Q1.csv">cyclistic dataset</a> from an S3 bucket into HDFS</p>
+</li>
+<li>
+<p>Create HFiles, which is a File format for hbase consisting of sorted key/value pairs. Both keys and values are byte arrays</p>
+</li>
+<li>
+<p>Load Hfiles into an existing table via the <code>Importtsv</code> utility, which will load data in <code>TSV</code> or <code>CSV</code> format into HBase</p>
+</li>
+<li>
+<p>Query data via hbase shell, which is an interactive shell to execute commands on the created table</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can see the deployed products as well as their relationship in the following diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/overview.png" alt="overview">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_list_deployed_stackable_services"><a class="anchor" href="#_list_deployed_stackable_services"></a>List deployed Stackable services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To list the installed Stackable services run the following command:
+<code>stackablectl services list --all-namespaces</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">PRODUCT    NAME       NAMESPACE  ENDPOINTS                                               EXTRA INFOS
+
+ hbase      hbase      default    regionserver                  172.18.0.5:32282
+                                  ui                            http://172.18.0.5:31527
+                                  metrics                       172.18.0.5:31081
+
+ hdfs       hdfs       default    datanode-default-0-metrics    172.18.0.2:31441
+                                  datanode-default-0-data       172.18.0.2:32432
+                                  datanode-default-0-http       http://172.18.0.2:30758
+                                  datanode-default-0-ipc        172.18.0.2:32323
+                                  journalnode-default-0-metrics 172.18.0.5:31123
+                                  journalnode-default-0-http    http://172.18.0.5:30038
+                                  journalnode-default-0-https   https://172.18.0.5:31996
+                                  journalnode-default-0-rpc     172.18.0.5:30080
+                                  namenode-default-0-metrics    172.18.0.2:32753
+                                  namenode-default-0-http       http://172.18.0.2:32475
+                                  namenode-default-0-rpc        172.18.0.2:31639
+                                  namenode-default-1-metrics    172.18.0.4:32202
+                                  namenode-default-1-http       http://172.18.0.4:31486
+                                  namenode-default-1-rpc        172.18.0.4:31874
+
+ zookeeper  zookeeper  default    zk                            172.18.0.4:32469</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When a product instance has not finished starting yet, the service will have no endpoint.
+Starting all the product instances might take a considerable amount of time depending on your internet connectivity.
+In case the product is not ready yet a warning might be shown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_first_job"><a class="anchor" href="#_the_first_job"></a>The first Job</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://hadoop.apache.org/docs/stable/hadoop-distcp/DistCp.html">DistCp</a> (distributed copy) is a tool used for large inter/intra-cluster copying. It uses MapReduce to effect its distribution, error handling, recovery, and reporting. It expands a list of files and directories into input to map tasks, each of which will copy a partition of the files specified in the source list.
+Therefore, the first Job uses DistCp to copy data from a S3 bucket into HDFS. Below you&#8217;ll see parts from the logs.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Copying s3a://public-backup-nyc-tlc/cycling-tripdata/demo-cycling-tripdata.csv.gz to hdfs://hdfs/data/raw/demo-cycling-tripdata.csv.gz
+[LocalJobRunner Map Task Executor #0] mapred.RetriableFileCopyCommand (RetriableFileCopyCommand.java:getTempFile(235)) - Creating temp file: hdfs://hdfs/data/raw/.distcp.tmp.attempt_local60745921_0001_m_000000_0.1663687068145
+[LocalJobRunner Map Task Executor #0] mapred.RetriableFileCopyCommand (RetriableFileCopyCommand.java:doCopy(127)) - Writing to temporary target file path hdfs://hdfs/data/raw/.distcp.tmp.attempt_local60745921_0001_m_000000_0.1663687068145
+[LocalJobRunner Map Task Executor #0] mapred.RetriableFileCopyCommand (RetriableFileCopyCommand.java:doCopy(153)) - Renaming temporary target file path hdfs://hdfs/data/raw/.distcp.tmp.attempt_local60745921_0001_m_000000_0.1663687068145 to hdfs://hdfs/data/raw/demo-cycling-tripdata.csv.gz
+[LocalJobRunner Map Task Executor #0] mapred.RetriableFileCopyCommand (RetriableFileCopyCommand.java:doCopy(157)) - Completed writing hdfs://hdfs/data/raw/demo-cycling-tripdata.csv.gz (3342891 bytes)
+[LocalJobRunner Map Task Executor #0] mapred.LocalJobRunner (LocalJobRunner.java:statusUpdate(634)) -
+[LocalJobRunner Map Task Executor #0] mapred.Task (Task.java:done(1244)) - Task:attempt_local60745921_0001_m_000000_0 is done. And is in the process of committing
+[LocalJobRunner Map Task Executor #0] mapred.LocalJobRunner (LocalJobRunner.java:statusUpdate(634)) -
+[LocalJobRunner Map Task Executor #0] mapred.Task (Task.java:commit(1421)) - Task attempt_local60745921_0001_m_000000_0 is allowed to commit now
+[LocalJobRunner Map Task Executor #0] output.FileOutputCommitter (FileOutputCommitter.java:commitTask(609)) - Saved output of task 'attempt_local60745921_0001_m_000000_0' to file:/tmp/hadoop/mapred/staging/stackable339030898/.staging/_distcp-1760904616/_logs
+[LocalJobRunner Map Task Executor #0] mapred.LocalJobRunner (LocalJobRunner.java:statusUpdate(634)) - 100.0% Copying s3a://public-backup-nyc-tlc/cycling-tripdata/demo-cycling-tripdata.csv.gz to hdfs://hdfs/data/raw/demo-cycling-tripdata.csv.gz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_second_job"><a class="anchor" href="#_the_second_job"></a>The second Job</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The second Job consists of 2 steps.</p>
+</div>
+<div class="paragraph">
+<p>First, we use <code>org.apache.hadoop.hbase.mapreduce.ImportTsv</code> (see <a href="https://hbase.apache.org/book.html#importtsv">ImportTsv Docs</a>) to create a table and Hfiles.
+Hfile is an Hbase dedicated file format which is performance optimized for hbase. It stores meta information about the data and thus increases the performance of hbase
+When connecting to the hbase master and opening a <code>bin/hbase shell</code> and executing <code>list</code>, you will see the created table. However, it&#8217;ll contain 0 rows at this point.
+You can connect to the shell via</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl exec -it hbase-master-default-0 -- bin/hbase shell</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use k9s you can go into the <code>hbase-master-default-0</code> and execute <code>bin/hbase shell list</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">TABLE
+cycling-tripdata</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Secondly, we&#8217;ll use <code>org.apache.hadoop.hbase.tool.LoadIncrementalHFiles</code> (see <a href="https://hbase.apache.org/book.html#arch.bulk.load">see bulk load docs</a>) to import the Hfiles into the table and ingest rows.
+You can now use the <code>bin/hbase shell</code> again and execute <code>count 'cycling-tripdata'</code> and see below for a partial result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Current count: 1000, row: 02FD41C2518CCF81
+Current count: 2000, row: 06022E151BC79CE0
+Current count: 3000, row: 090E4E73A888604A
+...
+Current count: 82000, row: F7A8C86949FD9B1B
+Current count: 83000, row: FA9AA8F17E766FD5
+Current count: 84000, row: FDBD9EC46964C103
+84777 row(s)
+Took 13.4666 seconds
+=&gt; 84777</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_table"><a class="anchor" href="#_the_table"></a>The table</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can now use the table and the data. You are able to use all available hbase shell commands. Below, you&#8217;ll see the table description.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">describe 'cycling-tripdata'
+Table cycling-tripdata is ENABLED
+cycling-tripdata
+COLUMN FAMILIES DESCRIPTION
+{NAME =&gt; 'end_lat', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'end_lng', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'end_station_id', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'end_station_name', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'ended_at', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'member_casual', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'rideable_type', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'start_lat', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'start_lng', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'start_station_id', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'start_station_name', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}
+{NAME =&gt; 'started_at', BLOOMFILTER =&gt; 'ROW', IN_MEMORY =&gt; 'false', VERSIONS =&gt; '1', KEEP_DELETED_CELLS =&gt; 'FALSE', DATA_BLOCK_ENCODING =&gt; 'NONE', COMPRESSION =&gt; 'NONE', TTL =&gt; 'FOREVER', MIN_VERSIONS =&gt; '0', BLOCKCACHE =&gt; 'true', BLOCKSIZE =&gt; '65536', REPLICATION_SCOPE =&gt; '0'}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_hbase_ui"><a class="anchor" href="#_the_hbase_ui"></a>The Hbase UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Hbase web UI will give you information on status and metrics of your Hbase cluster.
+If the UI is not available please do a port-forward <code>kubectl port-forward hbase-master-default-0 16010</code>
+See below for the startpage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hbase-ui-start-page.png" alt="hbase ui start page">
+</div>
+</div>
+<div class="paragraph">
+<p>From the startpage you can check more details. For example details on the created table.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hbase-table-ui.png" alt="hbase table ui">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_hdfs_ui"><a class="anchor" href="#_the_hdfs_ui"></a>The HDFS UI</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The hdfs services will be available with the next release 22-11 via <code>stackablectl services list --all-namespaces</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also see HDFS details via a UI. Below you will see the overview of your HDFS cluster</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hdfs-overview.png" alt="hdfs overview">
+</div>
+</div>
+<div class="paragraph">
+<p>The UI will give you information on the datanodes via the datanodes tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hdfs-datanode.png" alt="hdfs datanode">
+</div>
+</div>
+<div class="paragraph">
+<p>You can also browse the directory with the UI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hdfs-data.png" alt="hdfs data">
+</div>
+</div>
+<div class="paragraph">
+<p>The raw data from the distcp job can be found here.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hdfs-data-raw.png" alt="hdfs data raw">
+</div>
+</div>
+<div class="paragraph">
+<p>The structure of the Hilfes can be seen here.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/demo-hbase-hdfs-load-cycling-data/hdfs-data-hfile.png" alt="hdfs data hfile">
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

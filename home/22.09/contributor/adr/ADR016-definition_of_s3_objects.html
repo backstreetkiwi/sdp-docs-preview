@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ADR016: Representation of S3 Buckets in CRDs :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/home/stable/contributor/adr/ADR016-definition_of_s3_objects.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+    <script>var uiRootPath = '../../../../_'</script>
+    <link rel="icon" href="../../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="home" data-version="22.09">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../../index.html">Stackable Documentation</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">22.09</button>
+        <div class="version-menu">
+          <a class="version" href="../../../nightly/contributor/adr/ADR016-definition_of_s3_objects.html">nightly</a>
+          <a class="version" href="../../../stable/contributor/adr/ADR016-definition_of_s3_objects.html">22.11</a>
+          <a class="version is-current" href="ADR016-definition_of_s3_objects.html">22.09</a>
+          <a class="version" href="../../../22.06/contributor/adr/ADR016-definition_of_s3_objects.html">22.06</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../getting_started.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../concepts/index.html">Concepts</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/roles-and-role-groups.html">Roles and role groups</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/service_discovery.html">Service discovery ConfigMap</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/opa.html">OPA authorization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/s3.html">S3 resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../concepts/pvc.html">PersistentVolumeClaim usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../tutorials/index.html">Tutorials</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../tutorials/end-to-end_data_pipeline_example.html">Setting up an end-to-end data pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../reference/index.html">Reference</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../reference/s3.html">S3 resources</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../operators/index.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operators/supported_versions.html">Supported Product Versions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../operators/monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../airflow/stable/index.html">Apache Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../druid/stable/index.html">Apache Druid</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../hbase/stable/index.html">Apache HBase</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../hive/stable/index.html">Apache Hive</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../kafka/stable/index.html">Apache Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../nifi/stable/index.html">Apache NiFi</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../superset/stable/index.html">Apache Superset</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../trino/stable/index.html">Trino</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../opa/stable/index.html">OpenPolicyAgent</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../commons-operator/stable/index.html">Commons</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../../secret-operator/stable/index.html">Secret</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Contributor&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../steps.html">Steps to contribute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../development_dashboard.html">Development Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../style_guide.html">Documentation style guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Implementation guidelines</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../service_discovery.html">Service discovery implementation guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../opa_configuration.html">OPA connection implementation guidelines</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Architectural Decision Records</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Current</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR001-choose_project_language.html">ADR001: Use English as Documentation Language</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR002-choose_repository_structure.html">ADR002: Use Multiple Repositories instead of one Large Repository</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR003-choose_review_mechanism.html">ADR003: Use RTC as Review Mechanism for Changes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR004-choose_agent_programming_language.html">ADR004: Use Rust as programming language for the agent</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR005-systemd_unit_file_location.html">ADR005: Decide on handling and location of systemd unit files</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR007-defined_reuse_of_k8s.html">ADR007: Decide if Kubernetes Components Are to be Reused for Stackable</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR008-decide_reuse_of_operators.html">ADR008: Allow Reuse of Existing Kubernetes Operators</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR009-selector_support.html">ADR009: Assigning Services to Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR010-command_pattern.html">ADR010: Expressing one-shot commands in a Kubernetes-native way</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR011-directory_structure.html">ADR011: Directory Structure Used by Stackable Components on Managed Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR012-authn_token_management.html">ADR012: Authentication token management</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR013-supported_kubernetes_versions.html">ADR013: Supported Kubernetes versions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR014-user_authentication_for_products.html">ADR014: User Authentication for Products</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR015-using_values_from_configmaps.html">ADR015: How Should Operators Use Values from ConfigMaps &amp; Secrets</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="ADR016-definition_of_s3_objects.html">ADR016: Representation of S3 Buckets in CRDs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR017-tls_authentication.html">ADR017: TLS authentication</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR018-product_image_versioning.html">ADR018: Product Image Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR019-trino_catalog_definitions.html">ADR019: Trino catalog definitions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR020-trino_catalog_usage.html">ADR020: Trino catalog usage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR021-stackablectl_stacks_inital_version.html">ADR021: Initial Version of Stackable Stacks Functionality</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR022-spark-history-server.html">ADR022: Spark history server</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR023-product-image-selection.html">ADR023: Product image selection</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ADR024-out-of-cluster_access.html">ADR024: How to provide stable out-of-cluster access to products</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deprecated</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="deprecated/ADR006-choose_orchestrator_storage_backend.html">Use xxx as storage backend for the orchestrator</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Drafts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="drafts/ADRx-choose_authorization_engine.html">Choose Authorization Engine</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../release_notes.html">Release Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Documentation</span>
+    <span class="version">22.09</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../../stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../stable/index.html">22.11</a>
+        </li>
+        <li class="version is-current">
+          <a href="../../index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Stackable Documentation</a></li>
+    <li><a href="../index.html">Contributor&#8217;s Guide</a></li>
+    <li><a href="index.html">Architectural Decision Records</a></li>
+    <li>Current</li>
+    <li><a href="ADR016-definition_of_s3_objects.html">ADR016: Representation of S3 Buckets in CRDs</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/documentation/edit/release/22.09/modules/contributor/pages/adr/ADR016-definition_of_s3_objects.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">ADR016: Representation of S3 Buckets in CRDs</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Status: accepted</p>
+</li>
+<li>
+<p>Deciders:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Felix Hennig</p>
+</li>
+<li>
+<p>Sebastian Bernauer</p>
+</li>
+<li>
+<p>Siegfried Weber</p>
+</li>
+<li>
+<p>Sönke Liebau</p>
+</li>
+<li>
+<p>Teo Klestrup Röijezon</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Date: 29.04.2022</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context_and_problem_statement"><a class="anchor" href="#_context_and_problem_statement"></a>Context and Problem Statement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Currently we do not have a common schema of how we refer to S3 buckets that are used by the managed product.
+For example Trino, Druid and Hive all require/support specifying one or more S3 buckets to access, for some of the tools these buckets can reside on separate S3 endpoints (AWS, MinIO, Ceph, &#8230;&#8203;).</p>
+</div>
+<div class="paragraph">
+<p>We want to define a shared set of CRDs which can be used to specify these connections in an easy and composable fashion and works the same for all products across the Stackable Data Platform.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decision_drivers"><a class="anchor" href="#_decision_drivers"></a>Decision Drivers</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Must allow using multiple S3 endpoints in the same environment</p>
+</li>
+<li>
+<p>Must support buckets with generated names that are not known up front (like with Rook&#8217;s <a href="https://rook.io/docs/rook/v1.8/ceph-object-bucket-claim.html">object bucket claim</a> pattern)</p>
+</li>
+<li>
+<p>Must allow specifying just an S3 backend without a bucket (for example Trino and Druid need this)</p>
+</li>
+<li>
+<p>Should be easy to use for the end-user and not require scripting or similar things to take care of repetitively specifying the same S3 endpoint for multiple buckets (or comparable issues)</p>
+</li>
+<li>
+<p>Should favor native K8s mechanisms like ownership and reconciliation notifications over custom logic</p>
+</li>
+<li>
+<p>Must not put extra effort on the user in order to be easier to implement</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_considered_options"><a class="anchor" href="#_considered_options"></a>Considered Options</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#option1">Option 1</a>: Isolating S3 endpoint details in an S3Connection object and credentials in the S3Bucket</p>
+</li>
+<li>
+<p><a href="#option2">Option 2</a>: Inlining S3 endpoint details in the S3Bucket object</p>
+</li>
+<li>
+<p><a href="#option3">Option 3</a>: Inlining bucket name and credentials in the product configuration</p>
+</li>
+<li>
+<p><a href="#option4">Option 4</a>: Isolating S3 endpoint details and credentials in an S3Connection object</p>
+</li>
+<li>
+<p><a href="#option5">Option 5</a>: Merge of options 1, 3 &amp; 4</p>
+</li>
+<li>
+<p><a href="#option6">Option 6</a>: Generate inlined S3Connection objects from templates with a dedicated controller</p>
+</li>
+<li>
+<p><a href="#option7">Option 7</a>: Use the ConfigMap format that has been defined by Rook for use with its <a href="https://rook.io/docs/rook/v1.8/ceph-object-bucket-claim.html">object bucket claim</a> method</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decision_outcome"><a class="anchor" href="#_decision_outcome"></a>Decision Outcome</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Chosen option: "<a href="#option5">Option 5</a>" with caveats, because it allows us to start with a simple implementation that works for now, but can be gradually expanded to include more complex cases over time.</p>
+</div>
+<div class="paragraph">
+<p>We will in step 1 implement only the inlined version of the S3Bucket object like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Bucket
+metadata:
+  name: my-bucket
+data:
+  bucketName: my-bucket-123
+  secretClass: minio-credentials
+  s3Connection:
+    inline:
+      host: test-minio
+      port: 9000
+      tls:
+        verification:
+          server:
+            caCert:
+              secretClass: my-s3-ca</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Implementing this gives us a working solution and buys time to evaluate options for implementing more complex functionality.</p>
+</div>
+<div class="paragraph">
+<p>A required decision that was more or less orthogonal to the main decision documented in this ADR was to make all objects discussed in this ADR namespaced instead of cluster scoped, as this is in line with the overall approach of allowing namespace isolation for Stackable infrastructures.</p>
+</div>
+<div class="paragraph">
+<p>We will spike the second half of <a href="#option5">option 5&gt; as well as &lt;&lt;option6,option 6</a> and see which one has more potential and creates the least amount of implementation issues.
+A big part of this spike will be considering the needed watches on S3 objects which a operator would need to maintain.</p>
+</div>
+<div class="paragraph">
+<p>The decision on how to proceed will be documented in a separate ADR later on.</p>
+</div>
+<div class="paragraph">
+<p>Special mention should be given to <a href="#option7">Option 7</a> here, the main reason for deciding against this option was because we felt it wouldn&#8217;t make sense to use this standard and then extend it with non-standard settings that we need for our purposes - effectively diverting from the standard again.</p>
+</div>
+<div class="paragraph">
+<p>We decided to instead support object bucket claims by writing a controller that watches for these configmaps and converts them into our chosen notation for referring to buckets.
+The image below shows the control flow at a high level, a more detailed design will be done at a later time and is out of scope for this document.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3-object-bucket-claim.png" alt="s3 object bucket claim">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pros_and_cons_of_the_options"><a class="anchor" href="#_pros_and_cons_of_the_options"></a>Pros and Cons of the Options</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="option1"><a class="anchor" href="#option1"></a>Option 1: Isolating S3 endpoint details in an S3Connection object and credentials in the S3Bucket</h3>
+<div class="paragraph">
+<p>This option splits the definition of an S3 bucket over two objects with at least the following fields defined:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S3Bucket</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bucket name</p>
+</li>
+<li>
+<p>Credentials</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>S3Connection</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Endpoint</p>
+</li>
+<li>
+<p>TLS Config</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The purpose of this split is to make the S3Connection reusable over multiple buckets.
+For a user in an environment that only uses one S3 endpoint this would allow specifying the endpoint and port only once and then whenever buckets need to be configured only the bucket name and credentials need to be specified.</p>
+</div>
+<div class="paragraph">
+<p>This would for example allow defining different S3Connection objects in the test and dev environment, allowing the S3Bucket objects to be deployed to both environments unchanged, but still addressing different backends.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3_option1.png" alt="s3 option1">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Connection
+metadata:
+  name: my-minio
+data:
+  host: test-minio
+  port: 9000
+  tls:
+    verification:
+      server:
+        caCert:
+          secretClass: my-s3-ca
+---
+apiVersion: v1
+kind: S3Bucket
+metadata:
+  name: my-bucket
+data:
+  bucketName: my-bucket-123
+  s3Connection: my-minio
+  secretClass: minio-credentials</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because it reduces duplication of information</p>
+</li>
+<li>
+<p>Good, because it allows explicitly referring to an S3 backend from product that need this (Trino, Druid)</p>
+</li>
+<li>
+<p>Bad, because it adds a level of indirection that controllers need pay attention to for reconciliation triggers</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="option2"><a class="anchor" href="#option2"></a>Option 2: Inlining S3 endpoint details in the S3Bucket object</h3>
+<div class="paragraph">
+<p>This option inlines the S3 backend details into the S3Bucket object:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S3Bucket</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bucket name</p>
+</li>
+<li>
+<p>Credentials</p>
+</li>
+<li>
+<p>Endpoint</p>
+</li>
+<li>
+<p>TLS Config</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This makes code in the operator as well as debugging issues easier as all needed information are kept in the same object.
+At the same time this introduces a high amount of repetition for the user, as the same backend needs to be specified for every bucket object (and changed should anything in the backend ever change).</p>
+</div>
+<div class="paragraph">
+<p>This option makes reconciliation triggers simpler for the operator, but doesn&#8217;t fully eliminate the need for custom watches, as the same S3Connection object could be referenced from multiple product CRDs and we cannot make use of ownership to trigger reconciliation cleanly.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Connection
+metadata:
+  name: my-minio
+data:
+  host: test-minio
+  port: 9000
+  bucketName: my-bucket-123
+  secretClass: minio-credentials
+  tls:
+    verification:
+      server:
+        caCert:
+          secretClass: my-s3-ca</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3_option2.png" alt="s3 option2">
+</div>
+</div>
+<div class="paragraph">
+<p>[example | description | pointer to more information | …] &lt;!-- optional -&#8594;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because simpler for the user to understand</p>
+</li>
+<li>
+<p>Good, because simpler for the operator to use</p>
+</li>
+<li>
+<p>Bad, because puts the burden of repetition on the user (probably tooling will need to be created around this)</p>
+</li>
+<li>
+<p>Bad, because sacrifices flexibility while not completely eliminating the need for custom watches in the controller</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="option3"><a class="anchor" href="#option3"></a>Option 3: Inlining bucket name and credentials in the product configuration</h3>
+<div class="paragraph">
+<p>This is similar to <a href="#option1">Option 1</a> in that it separates the definition of S3 endpoint details from the bucket name and credentials.</p>
+</div>
+<div class="paragraph">
+<p>However this option foregoes the extra S3Bucket object in favor of directly referencing the S3Endpoint object from the product configuration CRD.
+The bucket name and credentials would also be specified in the product config CRD.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Connection
+metadata:
+  name: my-minio
+data:
+  host: test-minio
+  port: 9000
+  tls:
+    verification:
+      server:
+        caCert:
+          secretClass: my-s3-ca
+---
+apiVersion: v1
+kind: ProductCluster
+metadata:
+  name: my-product
+spec:
+  version: "1.2.3"
+  s3config:
+    bucketName: my-bucket
+    s3Connection: my-minio
+    secretClass: minio-credentials</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3_option3.png" alt="s3 option3">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because it simplifies the overall structure</p>
+</li>
+<li>
+<p>Bad, because it doesn&#8217;t allow reusing a defined s3 bucket for a different cluster definition</p>
+</li>
+<li>
+<p>Bad, because it does not support using buckets with generated names, as the name would need to be known up front for the cluster definition</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="option4"><a class="anchor" href="#option4"></a>Option 4: Isolating S3 endpoint details and credentials in an S3Connection object</h3>
+<div class="paragraph">
+<p>Option 4 can be considered a variant of <a href="#option1">Option 1</a> where the location of the credential used to access S3 is moved from the S3Bucket object to the S3Connection object.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Connection
+metadata:
+  name: my-minio
+data:
+  host: test-minio
+  port: 9000
+  secretClass: minio-credentials
+  tls:
+    verification:
+      server:
+        caCert:
+          secretClass: my-s3-ca
+---
+apiVersion: v1
+kind: S3Bucket
+metadata:
+  name: my-bucket
+data:
+  bucketName: my-bucket-123
+  s3Connection: my-minio</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3_option4.png" alt="s3 option4">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because it allows for an easy way to specify an S3 backend without specifying a bucket for products like Trino or Druid</p>
+</li>
+<li>
+<p>Bad, because it would result in a lot of S3Connection objects being created due to the inability to access buckets on the same S3 backend with different credentials</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="option5"><a class="anchor" href="#option5"></a>Option 5: Merge of options 1, 3 &amp; 4</h3>
+<div class="paragraph">
+<p>This option attempts to introduce flexibility in the data model to capitalize on the benefits of multiple options mentioned so far.</p>
+</div>
+<div class="paragraph">
+<p>By making the S3 backend configuration a complex enum in the S3Bucket object it is possible to allow one out of multiple possible way to refer to an S3 backend:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Directly specify the needed value in the S3Bucket object</p>
+</li>
+<li>
+<p>Refer to an S3Connection object</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally both objects will provide the option of specifying credentials to use for authentication.
+The principle for resolving this is that credentials specified on a bucket object would override credentials specified on an S3Connection object.
+If both objects do not provide credentials an anonymous connection would be attempted.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example - Inlined endpoint:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Bucket
+metadata:
+  name: my-bucket
+data:
+  bucketName: my-bucket-123
+  s3Connection:
+    inline:
+      host: test-minio
+      port: 9000
+      secretClass: minio-credentials
+      tls:
+        verification:
+          server:
+            caCert:
+              secretClass: my-s3-ca</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Example - Reference to endpoint, credentials from S3Connection object:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Connection
+metadata:
+  name: my-minio
+data:
+  host: test-minio
+  port: 9000
+  secretClass: minio-credentials
+  tls:
+    verification:
+      server:
+        caCert:
+          secretClass: my-s3-ca
+---
+apiVersion: v1
+kind: S3Bucket
+metadata:
+  name: my-bucket
+data:
+  bucketName: my-bucket-123
+  s3Connection:
+    reference:
+      s3endpoint: my-minio</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Example - Reference to endpoint, credentials override:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: S3Connection
+metadata:
+  name: my-minio
+data:
+  host: test-minio
+  port: 9000
+  secretClass: minio-credentials
+  tls:
+    verification:
+      server:
+        caCert:
+          secretClass: my-s3-ca
+---
+apiVersion: v1
+kind: S3Bucket
+metadata:
+  name: my-bucket
+data:
+  bucketName: my-bucket-123
+  secretClass: my-personal-minio-credentials
+  s3Connection:
+    reference:
+      s3endpoint: my-minio</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For making this easier to use from the operators it could be helpful to provide a method in the operator framework that resolves a referenced variant of an S3Bucket into an inlined version of the same S3Bucket, so that operators would only need to implement one variant.</p>
+</div>
+<div class="paragraph">
+<p>The code listing below gives an idea of how this might look from very high up.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">struct S3Connection {
+    host: Option&lt;String&gt;,
+    port: Option&lt;String&gt;,
+    //...
+    credentials: Option&lt;S3Credentials&gt;,
+}
+
+struct S3Bucket {
+    connection: Option&lt;S3ConnectionReference&gt;,
+    bucket_name: Option&lt;String&gt;,
+}
+
+enum S3ConnectionReference {
+    inline {
+        host: Option&lt;String&gt;,
+        port: Option&lt;String&gt;,
+    },
+    external {
+        referencename: Option&lt;String&gt;, // refers to the name of an S3Connection object
+    }
+}
+
+struct S3Credentials {
+    //...
+}
+
+pub fn resolve_s3_bucket(bucket: &amp;S3Bucket) -&gt; Result&lt;Bucket&gt; {
+    if let Some(conn) = bucket.connection {
+        Ok(match conn {
+            S3ConnectionReference::inline { conn } =&gt; conn ,
+            S3ConnectionReference::external { conn } =&gt; {
+                // Create s3 bucket with inlined connection and return
+                conn.inline_connection()
+            }
+        })
+    }
+    Ok(())
+}</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3_option5.png" alt="s3 option5">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because it gives a lot of flexibility in defining S3 buckets, it pretty much has all the benefits of options 1, 3 &amp; 4</p>
+</li>
+<li>
+<p>Good, because we can start implementing only the inline configuration so that the operators only have to watch a single object (similar to option 2). Later on the reference mechanism can be added without a breaking change (as an addition to the complex enum).</p>
+</li>
+<li>
+<p>Bad, because setting up all necessary watches in the operator to ensure objects are reconciled as needed will become extremely complex</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="option6"><a class="anchor" href="#option6"></a>Option 6: Generate inlined S3Connection objects from templates with a dedicated controller</h3>
+<div class="paragraph">
+<p>This option solves the issue of unnecessarily repeating S3 endpoint details in every S3Bucket object by adding a controller that generates S3Buckets from templates that allow defining S3Connection templates <em>in bulk</em>.</p>
+</div>
+<div class="paragraph">
+<p>By offering a default way of generating multiple S3Buckets from a single object we try to preempt users from creating tooling of their own for generating these types of objects.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/adr/s3_option6.png" alt="s3 option6">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because it makes watches easy-ish to set up in the operators (identical to <a href="#option2">option 2</a>)</p>
+</li>
+<li>
+<p>Bad, because it requires creating a <em>template</em> object per set of credentials that are to be used for accessing the S3 endpoint</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="option7"><a class="anchor" href="#option7"></a>Option 7: Use the ConfigMap format that has been defined by Rook for use with its object bucket claim method</h3>
+<div class="paragraph">
+<p>There is an existing format for specifying object buckets in ConfigMaps that has been <a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.7/html/managing_hybrid_and_multicloud_resources/object-bucket-claim#creating-an-object-bucket-claim-using-the-command-line-interface_rhocs">defined</a> by RedHat (or maybe just documented and defined by someone else).</p>
+</div>
+<div class="paragraph">
+<p>Adhering to this format would have the benefit of automatically being compatible with any external system that uses this standard.
+This option can be considered roughly equivalent to <a href="#option2">Option2</a>, as the content of the ConfigMap matches what is specified in the S3Connection object for that option.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Good, because it is an established standard that would make our operators compatible with this standard</p>
+</li>
+<li>
+<p>Bad, because it does not give us the flexibility of adding content that we need and while staying fully compatible</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-bucket
+data:
+  BUCKET_HOST: 10.0.171.35
+  BUCKET_NAME: test21obc-933348a6-e267-4f82-82f1-e59bf4fe3bb4
+  BUCKET_PORT: "31242"
+  BUCKET_REGION: ""
+  BUCKET_SUBREGION: ""</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../../_/js/site.js"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../.." data-snippet-length="100" data-stylesheet="../../../../_/css/search.css"></script>
+<script async src="../../../../search-index.js"></script>
+  </body>
+</html>

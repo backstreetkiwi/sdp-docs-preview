@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>spark-k8s-anomaly-detection-taxi-data :: Stackable Documentation</title>
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="stackablectl" data-version="nightly">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="../index.html">stackablectl</a></h3>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commands</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/demo.html">Demo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/operator.html">Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/release.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/services.html">Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../commands/stack.html">Stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Demos</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="airflow-scheduled-job.html">airflow-scheduled-job</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="data-warehouse-iceberg-trino-spark.html">data-warehouse-iceberg-trino-spark</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hbase-hdfs-load-cycling-data.html">hbase-hdfs-cycling-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nifi-kafka-druid-earthquake-data.html">nifi-kafka-druid-earthquake-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nifi-kafka-druid-water-level-data.html">nifi-kafka-druid-water-level-data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="trino-taxi-data.html">trino-taxi-data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../customization.html">Customization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">stackablectl</span>
+    <span class="version">nightly</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">stackablectl</a></li>
+    <li><a href="spark-k8s-anomaly-detection-taxi-data.html">spark-k8s-anomaly-detection-taxi-data</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/stackablectl/edit/main/docs/modules/ROOT/pages/demos/spark-k8s-anomaly-detection-taxi-data.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">spark-k8s-anomaly-detection-taxi-data</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This guide assumes you already have the demo <code>spark-k8s-anomaly-detection-taxi-data</code> installed.
+If you don&#8217;t have it installed please follow the <a href="../commands/demo.html#_install_demo" class="xref page">documentation on how to install a demo</a>.
+To put it simply you have to run <code>stackablectl demo install spark-k8s-anomaly-detection-taxi-data</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This demo will</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install the required Stackable operators</p>
+</li>
+<li>
+<p>Spin up the following data products</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Trino</strong>: A fast distributed SQL query engine for big data analytics that helps you explore your data universe. This demo uses it to enable SQL access to the data</p>
+</li>
+<li>
+<p><strong>Spark</strong>: A multi-language engine for executing data engineering, data science, and machine learning. This demo uses it to batch process data from S3 by training and scoring an unsupervised anomaly detection model, writing the results into a Trino table. In this demo Spark uses an isolation forest algorithm from the scikit-learn machine learning library.</p>
+</li>
+<li>
+<p><strong>MinIO</strong>: A S3 compatible object store. This demo uses it as persistent storage to store all the data used</p>
+</li>
+<li>
+<p><strong>Hive metastore</strong>: A service that stores metadata related to Apache Hive and other services. This demo uses it as metadata storage for Trino and Spark</p>
+</li>
+<li>
+<p><strong>Open policy agent</strong> (OPA): A open source, general-purpose policy engine that unifies policy enforcement across the stack. This demo uses it as the authorizer for Trino, which decides which user is able to query which data.</p>
+</li>
+<li>
+<p><strong>Superset</strong>: A modern data exploration and visualization platform. This demo utilizes Superset to retrieve data from Trino via SQL queries and build dashboards on top of that data</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Copy the taxi data in parquet format into the s3 staging area</p>
+</li>
+<li>
+<p>A Spark batch job is started, which fetches the raw data, trains and scores a model, writing out the results to Trino/S3 for use by Superset</p>
+</li>
+<li>
+<p>Create Superset dashboards for visualization of the anomaly detection scores
+You can see the deployed products as well as their relationship in the following diagram:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/overview.png" alt="overview">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_list_deployed_stackable_services"><a class="anchor" href="#_list_deployed_stackable_services"></a>List deployed Stackable services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To list the installed installed Stackable services run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ stackablectl services list --all-namespaces
+PRODUCT   NAME          NAMESPACE               ENDPOINTS                                     EXTRA INFOS
+
+ hive      hive          spark-k8s-ad-taxi-data  hive                172.18.0.2:31912
+                                                 metrics             172.18.0.2:30812
+
+ hive      hive-iceberg  spark-k8s-ad-taxi-data  hive                172.18.0.4:32133
+                                                 metrics             172.18.0.4:32125
+
+ opa       opa           spark-k8s-ad-taxi-data  http                http://172.18.0.3:31450
+
+ superset  superset      spark-k8s-ad-taxi-data  external-superset   http://172.18.0.2:31339   Admin user: admin, password: admin
+
+ trino     trino         spark-k8s-ad-taxi-data  coordinator-metrics 172.18.0.3:32168
+                                                 coordinator-https   https://172.18.0.3:31408
+
+ minio     minio-trino   spark-k8s-ad-taxi-data  http                http://172.18.0.3:30589   Third party service
+                                                 console-http        http://172.18.0.3:31452   Admin user: root, password: rootroot</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When a product instance has not finished starting yet, the service will have no endpoint.
+Starting all the product instances might take a considerable amount of time depending on your internet connectivity.
+In case the product is not ready yet a warning might be shown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minio"><a class="anchor" href="#_minio"></a>MinIO</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_list_buckets"><a class="anchor" href="#_list_buckets"></a>List buckets</h3>
+<div class="paragraph">
+<p>The S3 provided by MinIO is used as persistent storage to store all the data used.
+Open the <code>minio-trino</code> endpoint <code>console-http</code> retrieved by <code>stackablectl services list</code> in your browser (<a href="http://172.18.0.3:31452" class="bare">http://172.18.0.3:31452</a> in this case).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/minio_0.png" alt="minio 0">
+</div>
+</div>
+<div class="paragraph">
+<p>Log in with the username <code>root</code> and password <code>rootroot</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/minio_2.png" alt="minio 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Here you can see the two buckets the S3 is split into:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>demo</code>: The demo loads static datasets into this area. It is stored in parquet format. It forms the basis for the model that will be trained by Spark.</p>
+</li>
+<li>
+<p><code>prediction</code>: This bucket is where the model scores are persisted. The data is stored in the <a href="https://iceberg.apache.org/">Apache Iceberg</a> table format.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inspect_raw_data"><a class="anchor" href="#_inspect_raw_data"></a>Inspect raw data</h3>
+<div class="paragraph">
+<p>Click on the blue button <code>Browse</code> on the bucket <code>demo</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/minio_3.png" alt="minio 3">
+</div>
+</div>
+<div class="paragraph">
+<p>You can see a folder (called prefixes in S3) containing a dataset of similarly-structured data files. The data is partitioned by month and contains several hundred MBs of data. This may not seem particularly large for a data-set, but the model is a time-series model where the data has decreasing relevance the "older" it is: this is especially when the data is subject to multiple external factors, many of which are unknown and fluctuating in scope and effect.</p>
+</div>
+<div class="paragraph">
+<p>The second bucket <code>prediction</code> contains the output from the model scoring process:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/minio_4.png" alt="minio 4">
+</div>
+</div>
+<div class="paragraph">
+<p>This is a much smaller file as it only contains scores for each aggregated time period.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spark"><a class="anchor" href="#_spark"></a>Spark</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Spark job ingests the raw data and performs some fairly straightforward data wrangling and feature engineering. Any windowing features designed to capture the time-series nature of the data - such as lags or rolling averages - need to make use of evenly distributed partitions so that Spark can execute these tasks in parallel. The job uses an implementation of the Isolation Forest <a href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm08b.pdf">algorithm</a> provided by the scikit-learn <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html">library</a>: the model is trained in a single task, but is then distributed to each executor from where it is invoked by a user-defined function. The Isolation Forest algorithm is used for unsupervised model training, which means that a labelled set of data - against which the model is trained - is not necessary. This makes model preparation easier as we do not have to divide the data set into training and validation datasets.</p>
+</div>
+<div class="paragraph">
+<p>You can inspect a running Spark job by forwarding the port used by the Spark-UI:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">kubectl port-forward spark-ad-driver 4040</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and then opening a browser tab to <a href="http://localhost:4040" class="bare">http://localhost:4040</a>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/spark_job.png" alt="spark job">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dashboard"><a class="anchor" href="#_dashboard"></a>Dashboard</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The anomaly detection dashboard is pre-defined and accessible under <code>Dashboards</code> when you have logged in to Superset:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/spark-k8s-anomaly-detection-taxi-data/superset_anomaly_scores.png" alt="superset anomaly scores">
+</div>
+</div>
+<div class="paragraph">
+<p>Have can we interpret the results? This is where the fun begins (!) as the model does not yield data that can be used directly for a root cause analysis. An isolation forest is a type of random forest that measures how many branches are needed in its underlying decision trees to isolate each data point: the more anomalous the data, the easier this will be - a clear outlier may only need a single partition to isolate it, whereas tightly clustered data will require significantly more. The number-of-partitions-to-isolate is therefore in inverse proportion to the anomaly-ness of the data.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

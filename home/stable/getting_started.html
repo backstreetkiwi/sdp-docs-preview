@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting Started :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/home/stable/getting_started.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="index.html">Home</a>
+<a class="navbar-sub-item" href="getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="home" data-version="22.11">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="index.html">Stackable Documentation</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">22.11</button>
+        <div class="version-menu">
+          <a class="version" href="../nightly/getting_started.html">nightly</a>
+          <a class="version is-current" href="getting_started.html">22.11</a>
+          <a class="version" href="../22.09/getting_started.html">22.09</a>
+          <a class="version" href="../22.06/getting_started.html">22.06</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="quickstart.html">Quickstart</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="getting_started.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="concepts/index.html">Concepts</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concepts/roles-and-role-groups.html">Roles and role groups</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concepts/service_discovery.html">Service discovery ConfigMap</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concepts/opa.html">OPA authorization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concepts/s3.html">S3 resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concepts/pvc.html">PersistentVolumeClaim usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="concepts/resources.html">Resource management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="tutorials/index.html">Tutorials</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorials/end-to-end_data_pipeline_example.html">Setting up an end-to-end data pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="reference/index.html">Reference</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="reference/s3.html">S3 resources</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="operators/index.html">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="operators/supported_versions.html">Supported Product Versions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="operators/monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../airflow/stable/index.html">Apache Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../druid/stable/index.html">Apache Druid</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../hbase/stable/index.html">Apache HBase</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../hive/stable/index.html">Apache Hive</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../kafka/stable/index.html">Apache Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../nifi/stable/index.html">Apache NiFi</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../superset/stable/index.html">Apache Superset</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../trino/stable/index.html">Trino</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../opa/stable/index.html">OpenPolicyAgent</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../commons-operator/stable/index.html">Commons</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../secret-operator/stable/index.html">Secret</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="contributor/index.html">Contributor&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="contributor/steps.html">Steps to contribute</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="contributor/development_dashboard.html">Development Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="contributor/style_guide.html">Documentation style guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Implementation guidelines</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="contributor/service_discovery.html">Service discovery implementation guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="contributor/opa_configuration.html">OPA connection implementation guidelines</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="contributor/adr/index.html">Architectural Decision Records</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Current</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR001-choose_project_language.html">ADR001: Use English as Documentation Language</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR002-choose_repository_structure.html">ADR002: Use Multiple Repositories instead of one Large Repository</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR003-choose_review_mechanism.html">ADR003: Use RTC as Review Mechanism for Changes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR004-choose_agent_programming_language.html">ADR004: Use Rust as programming language for the agent</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR005-systemd_unit_file_location.html">ADR005: Decide on handling and location of systemd unit files</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR007-defined_reuse_of_k8s.html">ADR007: Decide if Kubernetes Components Are to be Reused for Stackable</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR008-decide_reuse_of_operators.html">ADR008: Allow Reuse of Existing Kubernetes Operators</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR009-selector_support.html">ADR009: Assigning Services to Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR010-command_pattern.html">ADR010: Expressing one-shot commands in a Kubernetes-native way</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR011-directory_structure.html">ADR011: Directory Structure Used by Stackable Components on Managed Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR012-authn_token_management.html">ADR012: Authentication token management</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR013-supported_kubernetes_versions.html">ADR013: Supported Kubernetes versions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR014-user_authentication_for_products.html">ADR014: User Authentication for Products</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR015-using_values_from_configmaps.html">ADR015: How Should Operators Use Values from ConfigMaps &amp; Secrets</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR016-definition_of_s3_objects.html">ADR016: Representation of S3 Buckets in CRDs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR017-tls_authentication.html">ADR017: TLS authentication</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR018-product_image_versioning.html">ADR018: Product Image Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR019-trino_catalog_definitions.html">ADR019: Trino catalog definitions</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR020-trino_catalog_usage.html">ADR020: Trino catalog usage</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR021-stackablectl_stacks_inital_version.html">ADR021: Initial Version of Stackable Stacks Functionality</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR022-spark-history-server.html">ADR022: Spark history server</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR023-product-image-selection.html">ADR023: Product image selection</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/ADR024-out-of-cluster_access.html">ADR024: How to provide stable out-of-cluster access to products</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deprecated</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/deprecated/ADR006-choose_orchestrator_storage_backend.html">Use xxx as storage backend for the orchestrator</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Drafts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="contributor/adr/drafts/ADRx-choose_authorization_engine.html">Choose Authorization Engine</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="release_notes.html">Release Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Documentation</span>
+    <span class="version">22.11</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-current is-latest">
+          <a href="index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Stackable Documentation</a></li>
+    <li><a href="getting_started.html">Getting Started</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/documentation/edit/release/22.11/modules/ROOT/pages/getting_started.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Getting Started</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the best ways of getting started with a new platform is to try it out. Any big data platform has a lot of moving parts and getting some hands on keyboard time with it helps reinforce learning.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_this_guide"><a class="anchor" href="#_about_this_guide"></a>About this guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Firstly, let’s cover whether this <strong>Getting Started</strong> guide is right for you. This is intended as a learning tool to discover more about Stackable, its deployment and architecture.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you want to build a production cluster then this is not for you. This tutorial is to familiarise you with the Stackable architecture and is not a guide for building robust clusters.</p>
+</li>
+<li>
+<p>This is intended for use in a private network or lab; it doesn&#8217;t enable many security features such as authentication or encryption and should not be directly connected to the Internet. Be careful if you&#8217;re deploying in the cloud as your instances may default to using public IPs.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Stackable is based on Kubernetes and uses this as the control plane to manage clusters. In this guide we will build a simple cluster with 3 services; Apache ZooKeeper, Apache Kafka and Apache NiFi.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_kubernetes"><a class="anchor" href="#_installing_kubernetes"></a>Installing Kubernetes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Stackable’s control plane is built around Kubernetes, and we&#8217;ll give some brief examples of how to install Kubernetes on your machine.</p>
+</div>
+<div class="sect2">
+<h3 id="_installing_kubectl"><a class="anchor" href="#_installing_kubectl"></a>Installing kubectl</h3>
+<div class="paragraph">
+<p>Stackable operators and their services are managed by applying manifest files to the Kubernetes cluster. For this purpose, you need to have the <code>kubectl</code> tool installed. Follow the instructions <a href="https://kubernetes.io/docs/tasks/tools/#kubectl">here</a> for your platform.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_kubernetes_using_kind"><a class="anchor" href="#_installing_kubernetes_using_kind"></a>Installing Kubernetes using Kind</h3>
+<div class="paragraph">
+<p>Kind offers a very quick and easy way to bootstrap your Kubernetes infrastructure in Docker. The big advantage of this is that you can simply remove the Docker containers when you&#8217;re finished and clean up easily, making it great for testing and development.</p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t already have Docker then visit <a href="https://docs.docker.com/get-docker/">Docker Website</a> to find out how to install Docker. Kind is a single executable that performs the tasks of installing and configuring Kubernetes for you within Docker containers. The <a href="https://kind.sigs.k8s.io/docs/user/quick-start/">Kind Website</a> has instructions for installing Kind on your system.</p>
+</div>
+<div class="paragraph">
+<p>Once you have both of these installed then you can build a Kubernetes cluster in Docker. We&#8217;re going to create a 2 node cluster to test out Stackable, one node hosting the Kubernetes control plane and the other hosting the Stackable services.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kind create cluster --name quickstart --config - &lt;&lt; EOF
+---
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+  kubeadmConfigPatches:
+    - |
+      kind: JoinConfiguration
+      nodeRegistration:
+        kubeletExtraArgs:
+          node-labels: node=quickstart-1
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_kubernetes_using_k3s"><a class="anchor" href="#_installing_kubernetes_using_k3s"></a>Installing Kubernetes using K3s</h3>
+<div class="paragraph">
+<p>K3s provides a quick way of installing Kubernetes. On your control node run the following command to install K3s:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -sfL https://get.k3s.io | sh -s - --node-label 'node=quickstart-1' --write-kubeconfig-mode 644</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So long as you have an Internet connection K3s will download and automatically configure a simple Kubernetes environment.</p>
+</div>
+<div class="paragraph">
+<p>Create a symlink to the Kubernetes configuration from your home directory to allow tools like Helm to find the correct configuration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir ~/.kube
+ln -s /etc/rancher/k3s/k3s.yaml ~/.kube/config</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_your_kubernetes_installation"><a class="anchor" href="#_testing_your_kubernetes_installation"></a>Testing your Kubernetes installation</h3>
+<div class="paragraph">
+<p>To check if everything worked as expected you can use <code>kubectl cluster-info</code> to retrieve the cluster information. The output should look similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Kubernetes control plane is running at https://127.0.0.1:6443
+CoreDNS is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Metrics-server is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_stackable"><a class="anchor" href="#_installing_stackable"></a>Installing Stackable</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install_stackablectl"><a class="anchor" href="#_install_stackablectl"></a>Install stackablectl</h3>
+<div class="paragraph">
+<p>Install the Stackable command line utility <a href="../../stackablectl/stable/index.html" class="xref page">stackablectl</a> by following the installation steps for your platform on the <a href="../../stackablectl/stable/installation.html" class="xref page">installation</a> page.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_stackable_operators"><a class="anchor" href="#_installing_stackable_operators"></a>Installing Stackable Operators</h3>
+<div class="paragraph">
+<p>The Stackable operators are components that translate the service definitions deployed via Kubernetes into deploy services on the worker nodes. These can be installed on any node that has access to the Kubernetes control plane. In this example we will install them on the controller node.</p>
+</div>
+<div class="paragraph">
+<p>Stackable operators can be installed using stackablectl. Run the following commands to install ZooKeeper, Kafka and NiFi from the Stackable 22.06 release.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stackablectl release install -i zookeeper -i kafka -i nifi -i secret 22.06</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Using Helm instead</summary>
+<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These examples assume Helm version 3. They will not work with Helm version 2.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Add the stackable-stable Helm Chart repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm repo add stackable-stable https://repo.stackable.tech/repository/helm-stable/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install the operators:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install zookeeper-operator stackable-stable/zookeeper-operator --version=0.10.0
+helm install kafka-operator stackable-stable/kafka-operator --version=0.6.0
+helm install secret-operator stackable-stable/secret-operator --version=0.5.0
+helm install nifi-operator stackable-stable/nifi-operator --version=0.6.0</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>You can check which operators are installed using <code>stackablectl operator installed</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>OPERATOR              VERSION         NAMESPACE                      STATUS           LAST UPDATED
+kafka                 0.6.0           default                        deployed         2022-06-30 17:01:17.552606 +0100 BST
+nifi                  0.6.0           default                        deployed         2022-06-30 17:01:31.895733 +0100 BST
+secret                0.5.0           default                        deployed         2022-06-30 17:07:48.542761 +0100 BST
+zookeeper             0.10.0          default                        deployed         2022-06-30 17:01:47.032154 +0100 BST</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_stackable_services"><a class="anchor" href="#_deploying_stackable_services"></a>Deploying Stackable Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this point you’ve successfully deployed Kubernetes and the Stackable operators we need and are ready to deploy services to the cluster. To do this we provide service descriptions to Kubernetes for each of the services we wish to deploy.</p>
+</div>
+<div class="sect2">
+<h3 id="_apache_zookeeper"><a class="anchor" href="#_apache_zookeeper"></a>Apache ZooKeeper</h3>
+<div class="paragraph">
+<p>We will deploy an Apache ZooKeeper instance to our cluster.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperCluster
+metadata:
+  name: simple-zk
+spec:
+  servers:
+    roleGroups:
+      primary:
+        replicas: 1
+        config:
+          myidOffset: 10
+  version: 3.8.0-stackable0
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apache_kafka"><a class="anchor" href="#_apache_kafka"></a>Apache Kafka</h3>
+<div class="paragraph">
+<p>We will deploy an Apache Kafka broker that depends on the ZooKeeper service we just deployed. The zookeeperReference property below points to the namespace and name we gave to the ZooKeeper service deployed previously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: kafka.stackable.tech/v1alpha1
+kind: KafkaCluster
+metadata:
+  name: simple-kafka
+spec:
+  version: 2.8.1-stackable0
+  zookeeperConfigMapName: simple-kafka-znode
+  brokers:
+    roleGroups:
+      brokers:
+        replicas: 1
+---
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperZnode
+metadata:
+  name: simple-kafka-znode
+spec:
+  clusterRef:
+    name: simple-zk
+    namespace: default
+EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apache_nifi"><a class="anchor" href="#_apache_nifi"></a>Apache NiFi</h3>
+<div class="paragraph">
+<p>We will next deploy an Apache NiFi server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: zookeeper.stackable.tech/v1alpha1
+kind: ZookeeperZnode
+metadata:
+  name: simple-nifi-znode
+spec:
+  clusterRef:
+    name: simple-zk
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nifi-admin-credentials-simple
+stringData:
+  username: admin
+  password: AdminPassword
+---
+apiVersion: nifi.stackable.tech/v1alpha1
+kind: NifiCluster
+metadata:
+  name: simple-nifi
+spec:
+  version: 1.16.3-stackable0.1.0
+  zookeeperConfigMapName: simple-nifi-znode
+  config:
+    authentication:
+      method:
+        singleUser:
+          adminCredentialsSecret: nifi-admin-credentials-simple
+          autoGenerate: true
+    sensitiveProperties:
+      keySecret: nifi-sensitive-property-key
+      autoGenerate: true
+  nodes:
+    roleGroups:
+      default:
+        config:
+          selector:
+            matchLabels:
+              kubernetes.io/os: linux
+          log:
+            rootLogLevel: INFO
+        replicas: 1
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can check the status of the services using <code>kubectl get pods</code>. This will retrieve the status of all pods running in the default namespace.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                                             READY   STATUS    RESTARTS   AGE
+nifi-operator-deployment-64c98c779c-nw6h8        1/1     Running   0          24m
+kafka-operator-deployment-54df9f86c7-psqgd       1/1     Running   0          24m
+zookeeper-operator-deployment-767458d4f5-2czb9   1/1     Running   0          24m
+secret-operator-daemonset-pddkv                  2/2     Running   0          24m
+simple-zk-server-primary-0                       1/1     Running   0          23m
+simple-kafka-broker-brokers-0                    2/2     Running   0          21m
+simple-nifi-node-default-0                       1/1     Running   0          22m</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since this is the first time that each of these services has been deployed to these nodes, it will take some time to download the software from the Stackable repository and deploy the services. Once all of the pods are in the running state your cluster is ready to use.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_your_cluster"><a class="anchor" href="#_testing_your_cluster"></a>Testing your cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If all has gone well then you will have successfully deployed a Stackable cluster and used it to start three services that should now be ready for you.</p>
+</div>
+<div class="sect2">
+<h3 id="_apache_zookeeper_2"><a class="anchor" href="#_apache_zookeeper_2"></a>Apache ZooKeeper</h3>
+<div class="paragraph">
+<p>We can test ZooKeeper by running the ZooKeeper CLI shell. The easiest way to do this is to run the CLI shell on the pod that is running ZooKeeper.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl exec -i -t simple-zk-server-primary-0 -- bin/zkCli.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The shell should connect automatically to the ZooKeeper server running on the pod. You can run the <code>ls /</code> command to see the list of znodes in the root path, which should include those created by Apache Kafka and Apache NiFi.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[zk: localhost:2181(CONNECTED) 0] ls /
+[nifi, znode-17b28a7e-0d45-450b-8209-871225c6efa1, zookeeper]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apache_kafka_2"><a class="anchor" href="#_apache_kafka_2"></a>Apache Kafka</h3>
+<div class="paragraph">
+<p>To test Kafka we&#8217;ll create a topic, and verify that it was created.
+First create the topic with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl exec -i -t simple-kafka-broker-brokers-0 -c kafka -- \
+  bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic demo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see the message, "Created topic demo." on the console. Now let&#8217;s check to see if it was actually created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl exec -i -t simple-kafka-broker-brokers-0 -c kafka -- \
+  bin/kafka-topics.sh --bootstrap-server localhost:9092 --list</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apache_nifi_2"><a class="anchor" href="#_apache_nifi_2"></a>Apache NiFi</h3>
+<div class="paragraph">
+<p>Apache NiFi provides a web interface and the easiest way to test it is to view this in a web browser.
+To access the web interface we first need to get the ip address and port Nifi is listening on.
+To get the IP address we need to connect to (in this case <code>172.18.0.2</code>), run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get nodes --selector=node=quickstart-1 -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                STATUS   ROLES    AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE       KERNEL-VERSION      CONTAINER-RUNTIME
+quickstart-worker   Ready    &lt;none&gt;   45m   v1.21.1   172.18.0.2    &lt;none&gt;        Ubuntu 21.04   5.15.0-25-generic   containerd://1.5.2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the following command we get the port (in this case <code>30247</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get svc simple-nifi</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+simple-nifi   NodePort   10.43.75.25   &lt;none&gt;        8443:30247/TCP   49m</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Browse to the address of your Kubernetes node on port <code>30247</code> e.g. <a href="https://172.18.0.2:30247/nifi" class="bare">https://172.18.0.2:30247/nifi</a> and you should see the NiFi login screen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/nifi_login_screen.png" alt="The Apache NiFi web interface login screen"></span></p>
+</div>
+<div class="paragraph">
+<p>The Apache NiFi operator will automatically generate the admin user credentials with a random password and store it as a Kubernetes secret in order to provide some security out of the box. You can retrieve this password for the <code>admin</code> user with the following kubectl command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get secrets nifi-admin-credentials-simple \
+-o jsonpath="{.data.password}" | base64 -d &amp;&amp; echo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have these credentials you can log in and you should see a blank NiFi canvas.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/nifi_menu.png" alt="The Apache NiFi web interface canvas"></span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

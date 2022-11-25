@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Usage :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/trino/0.6/usage.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../../spark-k8s/stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="trino" data-version="0.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="index.html">Stackable Operator for Trino</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">0.5</button>
+        <div class="version-menu">
+          <a class="version is-missing" href="../nightly/index.html">nightly</a>
+          <a class="version is-missing" href="../stable/index.html">0.8</a>
+          <a class="version is-missing" href="../0.7/index.html">0.7</a>
+          <a class="version" href="../0.6/usage.html">0.6</a>
+          <a class="version is-current" href="usage.html">0.5</a>
+          <a class="version" href="../0.4/usage.html">0.4</a>
+          <a class="version" href="../0.3/usage.html">0.3</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="getting_started/index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting_started/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting_started/first_steps.html">First steps</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="usage.html">Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Operator for Trino</span>
+    <span class="version">0.5</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../spark-k8s/stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../spark-k8s/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../spark-k8s/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../spark-k8s/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.6/index.html">0.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Stackable Operator for Trino</a></li>
+    <li><a href="usage.html">Usage</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/trino-operator/blob/docs/0.5/docs/modules/ROOT/pages/usage.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Usage</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Trino works together with the Apache Hive metastore and S3 bucket.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Deployed Stackable Apache Hive metastore</p>
+</li>
+<li>
+<p>Accessible S3 Bucket</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Endpoint, access-key and secret-key</p>
+</li>
+<li>
+<p>Data in the Bucket (we use the <a href="https://archive.ics.uci.edu/ml/datasets/iris">Iris</a> dataset here)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Optional deployed Stackable <a href="../../secret-operator/stable/index.html" class="xref page">Secret Operator</a> for certificates when deploying for TLS</p>
+</li>
+<li>
+<p>Optional deployed Stackable <a href="../../commons-operator/stable/index.html" class="xref page">Commons Operator</a> for certificates when deploying for TLS authentication</p>
+</li>
+<li>
+<p>Optional for authorization: Deployed Stackable <a href="../../opa/stable/index.html" class="xref page">OPA Operator</a>[OPA-Operator]</p>
+</li>
+<li>
+<p>Optional <a href="https://repo.stackable.tech/#browse/browse:packages:trino-cli%2Ftrino-cli-363-executable.jar">Trino CLI</a> to test SQL queries</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the following we explain or link the required installation steps.</p>
+</div>
+<div class="sect2">
+<h3 id="_s3_bucket"><a class="anchor" href="#_s3_bucket"></a>S3 bucket</h3>
+<div class="paragraph">
+<p>Please refer to the S3 provider.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hive_operator"><a class="anchor" href="#_hive_operator"></a>Hive operator</h3>
+<div class="paragraph">
+<p>Please refer to the <a href="../../hive/stable/index.html" class="xref page">Hive Operator</a> docs.</p>
+</div>
+<div class="paragraph">
+<p>Both Hive and Trino need the same S3 authentication.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_opa_operator"><a class="anchor" href="#_opa_operator"></a>OPA operator</h3>
+<div class="paragraph">
+<p>Please refer to the <a href="../../opa/stable/index.html" class="xref page">OPA Operator</a> docs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
+<div class="paragraph">
+<p>We provide user authentication via secret that can be referred in the custom resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">authentication:
+  method:
+    multiUser:
+      userCredentialsSecret:
+        namespace: default
+        name: simple-trino-users-secret</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These secrets need to be created manually before startup. The secret may look like the following snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: simple-trino-users-secret
+type: kubernetes.io/opaque
+stringData:
+  admin: $2y$10$89xReovvDLacVzRGpjOyAOONnayOgDAyIS2nW9bs5DJT98q17Dy5i
+  alice: $2y$10$HcCa4k9v2DRrD/g7e5vEz.Bk.1xg00YTEHOZjPX7oK3KqMSt2xT8W
+  bob: $2y$10$xVRXtYZnYuQu66SmruijPO8WHFM/UK5QPHTr.Nzf4JMcZSqt3W.2.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The &lt;user&gt;:&lt;password&gt; combinations are provided in the <code>stringData</code> field. The hashes are created using bcrypt with 10 rounds or more.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">htpasswd -nbBC 10 admin admin</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authorization"><a class="anchor" href="#_authorization"></a>Authorization</h3>
+<div class="paragraph">
+<p>In order to authorize Trino via OPA, a <code>ConfigMap</code> containing Rego rules for Trino has to be applied. The following example is an all access Rego rule for testing with the user <code>admin</code>. Do not use it in production!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opa-bundle-trino
+  labels:
+    opa.stackable.tech/bundle: "trino"
+data:
+  trino.rego: |
+    package trino
+
+    import future.keywords.in
+
+    default allow = false
+
+    allow {
+      is_admin
+    }
+
+    is_admin() {
+      input.context.identity.user == "admin"
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Users should write their own rego rules for more complex OPA authorization.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trino"><a class="anchor" href="#_trino"></a>Trino</h3>
+<div class="paragraph">
+<p>With the prerequisites fulfilled, the CRD for this operator must be created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f /etc/stackable/trino-operator/crd/trinocluster.crd.yaml</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_insecure_for_testing"><a class="anchor" href="#_insecure_for_testing"></a>Insecure for testing:</h4>
+<div class="paragraph">
+<p>Create an insecure single node Trino (v387) cluster for testing. You will access the UI/CLI via http and no user / password or authorization is required. Please adapt the <code>s3</code> settings with your credentials (check <code>examples/simple-trino-cluster.yaml</code> for an example setting up Hive and Trino):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCluster
+metadata:
+  name: simple-trino
+spec:
+  version: 387-stackable0.1.0
+  hiveConfigMapName: simple-hive-derby
+  catalogLabelSelector:
+    trino: simple-trino
+  coordinators:
+    roleGroups:
+      default:
+        replicas: 1
+  workers:
+    roleGroups:
+      default:
+        replicas: 1
+---
+apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCatalog
+metadata:
+  name: hive
+  labels:
+    trino: simple-trino
+spec:
+  connector:
+    hive:
+      metastore:
+        configMap: simple-hive-derby
+      s3:
+        inline:
+          host: test-minio
+          port: 9000
+          accessStyle: Path
+          credentials:
+            secretClass: minio-credentials</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To access the CLI please execute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">./trino-cli-387-executable.jar --debug --server http://&lt;node&gt;:&lt;http-port&gt; --user=admin</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_secure_for_production"><a class="anchor" href="#_secure_for_production"></a>Secure for production:</h4>
+<div class="paragraph">
+<p>There are multiple steps that must be taken to secure a Trino cluster:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enable authentication</p>
+</li>
+<li>
+<p>Enable TLS between the clients and coordinator</p>
+</li>
+<li>
+<p>Enable internal TLS for communications between coordinators and workers</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For testing purposes we use the <a href="https://trino.io/docs/current/installation/cli.html">Trino CLI</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_via_authentication"><a class="anchor" href="#_via_authentication"></a>Via authentication</h5>
+<div class="paragraph">
+<p>If authentication is enabled, <a href="https://trino.io/docs/current/security/tls.html">TLS</a> for the coordinator as well as a shared secret for <a href="https://trino.io/docs/current/security/internal-communication.html">internal communications</a> (this is base64 and not encrypted) must be configured.</p>
+</div>
+<div class="paragraph">
+<p>Securing the Trino cluster will disable all HTTP ports and disable the web interface on the HTTP port as well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCluster
+metadata:
+  name: simple-trino
+spec:
+  version: 387-stackable0.1.0
+  config:
+    tls:
+      secretClass: trino-tls
+  authentication:
+    method:
+      multiUser:
+        userCredentialsSecret:
+          name: simple-trino-users-secret
+[..]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If no <code>config.tls.secretClass</code> is provided but authentication is enabled, it will default to <code>tls</code> provided by the <a href="../../secret-operator/stable/index.html" class="xref page">Secret Operator</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">./trino-cli-387-executable.jar --debug --server https://&lt;host&gt;:&lt;https-port&gt; --user=admin  --keystore-path=keystore.p12 --keystore-password=changeit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">./trino-cli-387-executable.jar --debug --server https://&lt;host&gt;:&lt;https-port&gt; --user=admin --insecure</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_via_tls_only"><a class="anchor" href="#_via_tls_only"></a>Via TLS only</h5>
+<div class="paragraph">
+<p>This will disable the HTTP port and UI access and encrypt client-server communications.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCluster
+metadata:
+  name: simple-trino
+spec:
+  version: 387-stackable0.1.0
+  config:
+    tls:
+      secretClass: trino-tls
+[..]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">./trino-cli-387-executable.jar --debug --server https://&lt;host&gt;:&lt;https-port&gt; --user=admin --keystore-path=keystore.p12 --keystore-password=changeit</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_via_internal_tls"><a class="anchor" href="#_via_internal_tls"></a>Via internal TLS</h5>
+<div class="paragraph">
+<p>Internal TLS is for encrypted and authenticated communications between coordinators and workers. Since this applies to all the data send and processed between the processes, this may reduce the performance significantly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: trino.stackable.tech/v1alpha1
+kind: TrinoCluster
+metadata:
+  name: simple-trino
+spec:
+  version: 387-stackable0.1.0
+  config:
+    internalTls:
+      secretClass: trino-internal-tls
+[..]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since Trino has internal and external communications running over a single port, this will enable the HTTPS port but not expose it. Cluster access is only possible via HTTP.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">./trino-cli-387-executable.jar --debug --server http://&lt;host&gt;:&lt;http-port&gt; --user=admin</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_s3_connection_specification"><a class="anchor" href="#_s3_connection_specification"></a>S3 connection specification</h4>
+<div class="paragraph">
+<p>You can specify S3 connection details directly inside the <code>TrinoCatalog</code> specification
+or by referring to an external <code>S3Connection</code> custom resource.</p>
+</div>
+<div class="paragraph">
+<p>To specify S3 connection details directly as part of the <code>TrinoCatalog</code> resource, you
+add an inline connection configuration as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">s3: <i class="conum" data-value="1"></i><b>(1)</b>
+  inline:
+    host: test-minio <i class="conum" data-value="2"></i><b>(2)</b>
+    port: 9000 <i class="conum" data-value="3"></i><b>(3)</b>
+    pathStyleAccess: true <i class="conum" data-value="4"></i><b>(4)</b>
+    secretClass: minio-credentials  <i class="conum" data-value="5"></i><b>(5)</b>
+    tls:
+      verification:
+        server:
+          caCert:
+            secretClass: minio-tls-certificates <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Entry point for the connection configuration</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Connection host</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Optional connection port</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Optional flag if path-style URLs should be used; This defaults to <code>false</code>
+which means virtual hosted-style URLs are used.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Name of the <code>Secret</code> object expected to contain the following keys:
+<code>accessKey</code> and <code>secretKey</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Optional TLS settings for encrypted traffic. The <code>secretClass</code> can be provided by the Secret Operator or yourself.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A self provided S3 TLS secret can be specified like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: secrets.stackable.tech/v1alpha1
+kind: SecretClass
+metadata:
+  name: minio-tls-certificates
+spec:
+  backend:
+    k8sSearch:
+      searchNamespace:
+        pod: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: minio-tls-certificates
+  labels:
+    secrets.stackable.tech/class: minio-tls-certificates
+data:
+    ca.crt: &lt;your-base64-encoded-ca&gt;
+    tls.crt: &lt;your base64-encoded-public-key&gt;
+    tls.key: &lt;your-base64-encoded-private-key&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is also possible to configure the bucket connection details as a separate
+Kubernetes resource and only refer to that object from the <code>TrinoCatalog</code> specification
+like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">s3:
+  reference: my-connection-resource <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the connection resource with connection details</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The resource named <code>my-connection-resource</code> is then defined as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: s3.stackable.tech/v1alpha1
+kind: S3Connection
+metadata:
+  name: my-connection-resource
+spec:
+  host: test-minio
+  port: 9000
+  accessStyle: Path
+  credentials:
+    secretClass: minio-credentials</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has the advantage that the connection configuration can be shared across
+applications and reduces the cost of updating these details.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_trino_with_hive_and_s3"><a class="anchor" href="#_test_trino_with_hive_and_s3"></a>Test Trino with Hive and S3</h3>
+<div class="paragraph">
+<p>Create a schema and a table for the Iris data located in S3 and query data. This assumes to have the Iris data set in the <code>PARQUET</code> format available in the S3 bucket which can be downloaded <a href="https://www.kaggle.com/gpreda/iris-dataset/version/2?select=iris.parquet">here</a></p>
+</div>
+<div class="sect3">
+<h4 id="_create_schema"><a class="anchor" href="#_create_schema"></a>Create schema</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE SCHEMA IF NOT EXISTS hive.iris
+WITH (location = 's3a://iris/');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which should return:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE SCHEMA</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_table"><a class="anchor" href="#_create_table"></a>Create table</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE IF NOT EXISTS hive.iris.iris_parquet (
+  sepal_length DOUBLE,
+  sepal_width  DOUBLE,
+  petal_length DOUBLE,
+  petal_width  DOUBLE,
+  class        VARCHAR
+)
+WITH (
+  external_location = 's3a://iris/parq',
+  format = 'PARQUET'
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which should return:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE TABLE</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_query_data"><a class="anchor" href="#_query_data"></a>Query data</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT
+    sepal_length,
+    class
+FROM hive.iris.iris_parquet
+LIMIT 10;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which should return something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> sepal_length |    class
+--------------+-------------
+          5.1 | Iris-setosa
+          4.9 | Iris-setosa
+          4.7 | Iris-setosa
+          4.6 | Iris-setosa
+          5.0 | Iris-setosa
+          5.4 | Iris-setosa
+          4.6 | Iris-setosa
+          5.0 | Iris-setosa
+          4.4 | Iris-setosa
+          4.9 | Iris-setosa
+(10 rows)
+
+Query 20220210_161615_00000_a8nka, FINISHED, 1 node
+https://172.18.0.5:30299/ui/query.html?20220210_161615_00000_a8nka
+Splits: 18 total, 18 done (100.00%)
+CPU Time: 0.7s total,    20 rows/s, 11.3KB/s, 74% active
+Per Node: 0.3 parallelism,     5 rows/s, 3.02KB/s
+Parallelism: 0.3
+Peak Memory: 0B
+2.67 [15 rows, 8.08KB] [5 rows/s, 3.02KB/s]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monitoring"><a class="anchor" href="#_monitoring"></a>Monitoring</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The managed Trino instances are automatically configured to export Prometheus metrics. See
+<a href="../../home/stable/operators/monitoring.html" class="xref page">Monitoring</a> for more details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_environment_overrides"><a class="anchor" href="#_configuration_environment_overrides"></a>Configuration &amp; Environment Overrides</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The cluster definition also supports overriding configuration properties and environment variables, either per role or per role group, where the more specific override (role group) has precedence over the less specific one (role).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Do not override port numbers. This will lead to faulty installations.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_configuration_properties"><a class="anchor" href="#_configuration_properties"></a>Configuration Properties</h3>
+<div class="paragraph">
+<p>For a role or role group, at the same level of <code>config</code>, you can specify: <code>configOverrides</code> for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>config.properties</code></p>
+</li>
+<li>
+<p><code>node.properties</code></p>
+</li>
+<li>
+<p><code>log.properties</code></p>
+</li>
+<li>
+<p><code>password-authenticator.properties</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a list of possible configuration properties consult the <a href="https://trino.io/docs/current/admin/properties.html">Trino Properties Reference</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  roleGroups:
+    default:
+      config: {}
+      replicas: 1
+      configOverrides:
+        config.properties:
+          query.max-memory-per-node: "2GB"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just as for the <code>config</code>, it is possible to specify this at role level as well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  configOverrides:
+    config.properties:
+      query.max-memory-per-node: "2GB"
+  roleGroups:
+    default:
+      config: {}
+      replicas: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All override property values must be strings. The properties will be passed on without any escaping or formatting.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_environment_variables"><a class="anchor" href="#_environment_variables"></a>Environment Variables</h3>
+<div class="paragraph">
+<p>Environment variables can be (over)written by adding the <code>envOverrides</code> property.</p>
+</div>
+<div class="paragraph">
+<p>For example per role group:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  roleGroups:
+    default:
+      config: {}
+      replicas: 1
+      envOverrides:
+        JAVA_HOME: "path/to/java"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or per role:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  envOverrides:
+    JAVA_HOME: "path/to/java"
+  roleGroups:
+    default:
+      config: {}
+      replicas: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here too, overriding properties such as <code>http-server.https.port</code> will lead to broken installations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_storage_for_data_volumes"><a class="anchor" href="#_storage_for_data_volumes"></a>Storage for data volumes</h3>
+<div class="paragraph">
+<p>You can mount a volume where data (config and logs of Trino) is stored by specifying <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes">PersistentVolumeClaims</a> for each individual role or role group:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  config:
+    resources:
+      storage:
+        data:
+          capacity: 2Gi
+  roleGroups:
+    default:
+      config:
+        resources:
+          storage:
+            data:
+              capacity: 3Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example, all Trino workers in the default group will store data (the location of the property <code>--data-dir</code>) on a <code>3Gi</code> volume. Additional role groups not specifying any resources will inherit the config provided on the role level (<code>2Gi</code> volume). This works the same for memory or CPU requests.</p>
+</div>
+<div class="paragraph">
+<p>By default, in case nothing is configured in the custom resource for a certain role group, each Pod will have a <code>2Gi</code> large local volume mount for the data location containing mainly logs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_memory_requests"><a class="anchor" href="#_memory_requests"></a>Memory requests</h3>
+<div class="paragraph">
+<p>You can request a certain amount of memory for each individual role group as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  roleGroups:
+    default:
+      config:
+        resources:
+          memory:
+            limit: '2Gi'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, each Trino container in the <code>default</code> group will have a maximum of 2 gigabytes of memory. To be more precise, these memory limits apply to the container running Trino but not to any sidecar containers that are part of the pod.</p>
+</div>
+<div class="paragraph">
+<p>Setting this property will also automatically set the maximum Java heap size for the corresponding process to 80% of the available memory. Be aware that if the memory constraint is too low, the cluster might fail to start. If pods terminate with an 'OOMKilled' status and the cluster doesn&#8217;t start, try increasing the memory limit.</p>
+</div>
+<div class="paragraph">
+<p>For more details regarding Kubernetes memory requests and limits see: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Assign Memory Resources to Containers and Pods</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cpu_requests"><a class="anchor" href="#_cpu_requests"></a>CPU requests</h3>
+<div class="paragraph">
+<p>Similarly to memory resources, you can also configure CPU limits, as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  roleGroups:
+    default:
+      config:
+        resources:
+          cpu:
+            max: '500m'
+            min: '250m'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defaults"><a class="anchor" href="#_defaults"></a>Defaults</h3>
+<div class="paragraph">
+<p>If nothing is specified, the operator will automatically set the following default values for resources:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">workers:
+  roleGroups:
+    default:
+      config:
+        resources:
+          requests:
+            cpu: 200m
+            memory: 2Gi
+          limits:
+            cpu: "4"
+            memory: 2Gi
+          storage:
+            data:
+              capacity: 2Gi</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The default values are <em>most likely</em> not sufficient to run a proper cluster in production. Please adapt according to your requirements.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more details regarding Kubernetes CPU limits see: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/">Assign CPU Resources to Containers and Pods</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

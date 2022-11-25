@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Usage :: Stackable Documentation</title>
+    <link rel="canonical" href="https://docs.stackable.tech/spark-k8s/stable/usage.html">
+    <meta name="generator" content="Antora 3.1.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.png" type="image/png">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://stackable.tech"><img src="../../_/img/stackable-logo.png"></a>
+      <a class="navbar-item documentation-link" href="https://docs.stackable.tech">Documentation</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search...">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="navbar-sub">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="https://www.stackable.tech/contact/" class="button pull-right">Contact Us</a>
+    </div>
+      <div id="topbar-nav" class="navbar-menu">
+      </div>
+      </div>
+    </nav>
+    <nav id="navbar-sub" class="navbar-sub">
+      <div class="container">
+        <a class="navbar-sub-item" href="../../home/stable/index.html">Home</a>
+<a class="navbar-sub-item" href="../../home/stable/getting_started.html">Getting Started</a>
+<a class="navbar-sub-item" href="../../home/stable/concepts/index.html">Concepts</a>
+<a class="navbar-sub-item" href="../../home/stable/tutorials/end-to-end_data_pipeline_example.html">Tutorials</a>
+<a class="navbar-sub-item" href="../../stackablectl/stable/index.html">stackablectl</a>
+<div class="navbar-sub-item drop-down">
+    Operators
+    <div class="drop-down-content">
+        <a class="drop-down-item" href="../../home/stable/operators/index.html">Overview</a>
+        <a class="drop-down-item" href="../../airflow/stable/index.html">Apache Airflow</a>
+        <a class="drop-down-item" href="../../druid/stable/index.html">Apache Druid</a>
+        <a class="drop-down-item" href="../../hbase/stable/index.html">Apache HBase</a>
+        <a class="drop-down-item" href="../../hdfs/stable/index.html">Apache Hadoop HDFS</a>
+        <a class="drop-down-item" href="../../hive/stable/index.html">Apache Hive</a>
+        <a class="drop-down-item" href="../../kafka/stable/index.html">Apache Kafka</a>
+        <a class="drop-down-item" href="../../nifi/stable/index.html">Apache NiFi</a>
+        <a class="drop-down-item" href="../stable/index.html">Apache Spark on K8S</a>
+        <a class="drop-down-item" href="../../superset/stable/index.html">Apache Superset</a>
+        <a class="drop-down-item" href="../../trino/stable/index.html">Trino</a>
+        <a class="drop-down-item" href="../../zookeeper/stable/index.html">Apache ZooKeeper</a>
+        <a class="drop-down-item" href="../../opa/stable/index.html">OpenPolicyAgent</a>
+        <a class="drop-down-item" href="../../commons-operator/stable/index.html">Commons</a>
+        <a class="drop-down-item" href="../../secret-operator/stable/index.html">Secret</a>
+        <a class="drop-down-item" href="../../listener-operator/stable/index.html">Listener</a>
+    </div>
+</div>
+<a class="navbar-sub-item" href="../../home/stable/contributor/index.html">Contribute</a>
+
+        <a class="arrow" href="javascript:document.querySelector('.navbar-sub').classList.toggle('open')">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<div class="body">
+    <div class="container">
+<div class="nav-container" data-component="spark-k8s" data-version="0.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <div class="title-wrapper">
+      <h3 class="title"><a href="index.html">Stackable Operator for Apache Spark on Kubernetes</a></h3>
+      <div class="page-versions">
+        <button class="version-menu-toggle" title="Show other versions of page">0.5</button>
+        <div class="version-menu">
+          <a class="version" href="../nightly/usage.html">nightly</a>
+          <a class="version" href="../stable/usage.html">0.6</a>
+          <a class="version is-current" href="usage.html">0.5</a>
+          <a class="version" href="../0.4/usage.html">0.4</a>
+          <a class="version" href="../0.3/usage.html">0.3</a>
+          <a class="version" href="../0.2/usage.html">0.2</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="getting_started/index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting_started/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting_started/first_steps.html">First steps</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="usage.html">Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="job_dependencies.html">Job Dependencies</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rbac.html">RBAC</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Stackable Operator for Apache Spark on Kubernetes</span>
+    <span class="version">0.5</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../commons-operator/stable/index.html">Stackable Commons Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../commons-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../commons-operator/stable/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../commons-operator/0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../../commons-operator/0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../home/stable/index.html">Stackable Documentation</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../home/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../home/stable/index.html">22.11</a>
+        </li>
+        <li class="version">
+          <a href="../../home/22.09/index.html">22.09</a>
+        </li>
+        <li class="version">
+          <a href="../../home/22.06/index.html">22.06</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../listener-operator/stable/index.html">Stackable Listener Operator</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../listener-operator/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../airflow/stable/index.html">Stackable Operator for Apache Airflow</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../airflow/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../airflow/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../airflow/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../druid/stable/index.html">Stackable Operator for Apache Druid</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../druid/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../druid/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.2/index.html">0.2</a>
+        </li>
+        <li class="version">
+          <a href="../../druid/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hbase/stable/index.html">Stackable Operator for Apache HBase</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hbase/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hbase/stable/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../hbase/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../hbase/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hdfs/stable/index.html">Stackable Operator for Apache HDFS</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hdfs/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hdfs/stable/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../hdfs/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../hdfs/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../hive/stable/index.html">Stackable Operator for Apache Hive</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../hive/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../hive/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../hive/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../hive/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../kafka/stable/index.html">Stackable Operator for Apache Kafka</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../kafka/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../kafka/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../kafka/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../kafka/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../nifi/stable/index.html">Stackable Operator for Apache NiFi</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../nifi/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../nifi/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../nifi/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../nifi/0.6/index.html">0.6</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../stable/index.html">Stackable Operator for Apache Spark on Kubernetes</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../stable/index.html">0.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.3/index.html">0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.2/index.html">0.2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../superset/stable/index.html">Stackable Operator for Apache Superset</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../superset/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../superset/stable/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../superset/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../superset/0.5/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../zookeeper/stable/index.html">Stackable Operator for Apache ZooKeeper</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../zookeeper/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../zookeeper/stable/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../zookeeper/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../zookeeper/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../opa/stable/index.html">Stackable Operator for OPA</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../opa/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../opa/stable/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../opa/0.10/index.html">0.10</a>
+        </li>
+        <li class="version">
+          <a href="../../opa/0.9/index.html">0.9</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../trino/stable/index.html">Stackable Operator for Trino</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../trino/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../trino/stable/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../trino/0.3/index.html">0.3</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../secret-operator/stable/index.html">Stackable Secret Operator</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../secret-operator/nightly/index.html">nightly</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../secret-operator/stable/index.html">0.5</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../stackablectl/stable/index.html">stackablectl</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../stackablectl/stable/index.html">nightly</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../home/stable/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Stackable Operator for Apache Spark on Kubernetes</a></li>
+    <li><a href="usage.html">Usage</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/stackabletech/spark-k8s-operator/blob/docs/0.5/docs/modules/ROOT/pages/usage.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Usage</h1>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following examples have the following <code>spec</code> fields in common:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>version</code>: the current version is "1.0"</p>
+</li>
+<li>
+<p><code>sparkImage</code>: the docker image that will be used by job, driver and executor pods. This can be provided by the user.</p>
+</li>
+<li>
+<p><code>mode</code>: only <code>cluster</code> is currently supported</p>
+</li>
+<li>
+<p><code>mainApplicationFile</code>: the artifact (Java, Scala or Python) that forms the basis of the Spark job.</p>
+</li>
+<li>
+<p><code>args</code>: these are the arguments passed directly to the application. In the examples below it is e.g. the input path for part of the public New York taxi dataset.</p>
+</li>
+<li>
+<p><code>sparkConf</code>: these list spark configuration settings that are passed directly to <code>spark-submit</code> and which are best defined explicitly by the user. Since the <code>SparkApplication</code> "knows" that there is an external dependency (the s3 bucket where the data and/or the application is located) and how that dependency should be treated (i.e. what type of credential checks are required, if any), it is better to have these things declared together.</p>
+</li>
+<li>
+<p><code>volumes</code>: refers to any volumes needed by the <code>SparkApplication</code>, in this case an underlying <code>PersistentVoulmeClaim</code>.</p>
+</li>
+<li>
+<p><code>driver</code>: driver-specific settings, including any volume mounts.</p>
+</li>
+<li>
+<p><code>executor</code>: executor-specific settings, including any volume mounts.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Job-specific settings are annotated below.</p>
+</div>
+<div class="sect2">
+<h3 id="_pyspark_externally_located_artifact_and_dataset"><a class="anchor" href="#_pyspark_externally_located_artifact_and_dataset"></a>Pyspark: externally located artifact and dataset</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: spark.stackable.tech/v1alpha1
+kind: SparkApplication
+metadata:
+  name: example-sparkapp-external-dependencies
+  namespace: default
+spec:
+  version: "1.0"
+  sparkImage: docker.stackable.tech/stackable/pyspark-k8s:3.3.0-stackable0.1.0
+  mode: cluster
+  mainApplicationFile: s3a://stackable-spark-k8s-jars/jobs/ny_tlc_report.py <i class="conum" data-value="1"></i><b>(1)</b>
+  args:
+    - "--input 's3a://nyc-tlc/trip data/yellow_tripdata_2021-07.csv'" <i class="conum" data-value="2"></i><b>(2)</b>
+  deps:
+    requirements:
+      - tabulate==0.8.9  <i class="conum" data-value="3"></i><b>(3)</b>
+  sparkConf:  <i class="conum" data-value="4"></i><b>(4)</b>
+    "spark.hadoop.fs.s3a.aws.credentials.provider": "org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider"
+    "spark.driver.extraClassPath": "/dependencies/jars/*"
+    "spark.executor.extraClassPath": "/dependencies/jars/*"
+  volumes:
+    - name: job-deps  <i class="conum" data-value="5"></i><b>(5)</b>
+      persistentVolumeClaim:
+        claimName: pvc-ksv
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies  <i class="conum" data-value="6"></i><b>(6)</b>
+  executor:
+    cores: 1
+    instances: 3
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies  <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Job python artifact (external)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Job argument (external)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>List of python job requirements: these will be installed in the pods via <code>pip</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Spark dependencies: the credentials provider (the user knows what is relevant here) plus dependencies needed to access external resources (in this case, in s3)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>the name of the volume mount backed by a <code>PersistentVolumeClaim</code> that must be pre-existing</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>the path on the volume mount: this is referenced in the <code>sparkConf</code> section where the extra class path is defined for the driver and executors</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pyspark_externally_located_dataset_artifact_available_via_pvcvolume_mount"><a class="anchor" href="#_pyspark_externally_located_dataset_artifact_available_via_pvcvolume_mount"></a>Pyspark: externally located dataset, artifact available via PVC/volume mount</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: spark.stackable.tech/v1alpha1
+kind: SparkApplication
+metadata:
+  name: example-sparkapp-image
+  namespace: default
+spec:
+  version: "1.0"
+  image: docker.stackable.tech/stackable/ny-tlc-report:0.1.0 <i class="conum" data-value="1"></i><b>(1)</b>
+  sparkImage: docker.stackable.tech/stackable/pyspark-k8s:3.3.0-stackable0.1.0
+  mode: cluster
+  mainApplicationFile: local:///stackable/spark/jobs/ny_tlc_report.py <i class="conum" data-value="2"></i><b>(2)</b>
+  args:
+    - "--input 's3a://nyc-tlc/trip data/yellow_tripdata_2021-07.csv'" <i class="conum" data-value="3"></i><b>(3)</b>
+  deps:
+    requirements:
+      - tabulate==0.8.9 <i class="conum" data-value="4"></i><b>(4)</b>
+  sparkConf: <i class="conum" data-value="5"></i><b>(5)</b>
+    "spark.hadoop.fs.s3a.aws.credentials.provider": "org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider"
+    "spark.driver.extraClassPath": "/dependencies/jars/*"
+    "spark.executor.extraClassPath": "/dependencies/jars/*"
+  volumes:
+    - name: job-deps <i class="conum" data-value="6"></i><b>(6)</b>
+      persistentVolumeClaim:
+        claimName: pvc-ksv
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies <i class="conum" data-value="7"></i><b>(7)</b>
+  executor:
+    cores: 1
+    instances: 3
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Job image: this contains the job artifact that will be retrieved from the volume mount backed by the PVC</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Job python artifact (local)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Job argument (external)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>List of python job requirements: these will be installed in the pods via <code>pip</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Spark dependencies: the credentials provider (the user knows what is relevant here) plus dependencies needed to access external resources (in this case, in an S3 store)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>the name of the volume mount backed by a <code>PersistentVolumeClaim</code> that must be pre-existing</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>the path on the volume mount: this is referenced in the <code>sparkConf</code> section where the extra class path is defined for the driver and executors</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_scala_externally_located_artifact_and_dataset"><a class="anchor" href="#_jvm_scala_externally_located_artifact_and_dataset"></a>JVM (Scala): externally located artifact and dataset</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: spark.stackable.tech/v1alpha1
+kind: SparkApplication
+metadata:
+  name: example-sparkapp-pvc
+  namespace: default
+spec:
+  version: "1.0"
+  sparkImage: docker.stackable.tech/stackable/spark-k8s:3.3.0-stackable0.1.0
+  mode: cluster
+  mainApplicationFile: s3a://stackable-spark-k8s-jars/jobs/ny-tlc-report-1.0-SNAPSHOT.jar <i class="conum" data-value="1"></i><b>(1)</b>
+  mainClass: org.example.App <i class="conum" data-value="2"></i><b>(2)</b>
+  args:
+    - "'s3a://nyc-tlc/trip data/yellow_tripdata_2021-07.csv'"
+  sparkConf: <i class="conum" data-value="3"></i><b>(3)</b>
+    "spark.hadoop.fs.s3a.aws.credentials.provider": "org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider"
+    "spark.driver.extraClassPath": "/dependencies/jars/*"
+    "spark.executor.extraClassPath": "/dependencies/jars/*"
+  volumes:
+    - name: job-deps <i class="conum" data-value="4"></i><b>(4)</b>
+      persistentVolumeClaim:
+        claimName: pvc-ksv
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies <i class="conum" data-value="5"></i><b>(5)</b>
+  executor:
+    cores: 1
+    instances: 3
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Job artifact located on S3.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Job main class</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Spark dependencies: the credentials provider (the user knows what is relevant here) plus dependencies needed to access external resources (in this case, in an S3 store, accessed without credentials)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>the name of the volume mount backed by a <code>PersistentVolumeClaim</code> that must be pre-existing</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>the path on the volume mount: this is referenced in the <code>sparkConf</code> section where the extra class path is defined for the driver and executors</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_scala_externally_located_artifact_accessed_with_credentials"><a class="anchor" href="#_jvm_scala_externally_located_artifact_accessed_with_credentials"></a>JVM (Scala): externally located artifact accessed with credentials</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: spark.stackable.tech/v1alpha1
+kind: SparkApplication
+metadata:
+  name: example-sparkapp-s3-private
+spec:
+  version: "1.0"
+  sparkImage: docker.stackable.tech/stackable/spark-k8s:3.3.0-stackable0.1.0
+  mode: cluster
+  mainApplicationFile: s3a://my-bucket/spark-examples_2.12-3.3.0.jar <i class="conum" data-value="1"></i><b>(1)</b>
+  mainClass: org.apache.spark.examples.SparkPi <i class="conum" data-value="2"></i><b>(2)</b>
+  s3bucket:  <i class="conum" data-value="3"></i><b>(3)</b>
+    inline:
+      bucketName: my-bucket
+      connection:
+        inline:
+          host: test-minio
+          port: 9000
+          accessStyle: Path
+          credentials: <i class="conum" data-value="4"></i><b>(4)</b>
+            secretClass: s3-credentials-class
+  sparkConf: <i class="conum" data-value="5"></i><b>(5)</b>
+    spark.hadoop.fs.s3a.aws.credentials.provider: "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider" <i class="conum" data-value="6"></i><b>(6)</b>
+    spark.driver.extraClassPath: "/dependencies/jars/hadoop-aws-3.2.0.jar:/dependencies/jars/aws-java-sdk-bundle-1.11.375.jar"
+    spark.executor.extraClassPath: "/dependencies/jars/hadoop-aws-3.2.0.jar:/dependencies/jars/aws-java-sdk-bundle-1.11.375.jar"
+  volumes:
+    - name: spark-pi-deps <i class="conum" data-value="7"></i><b>(7)</b>
+      persistentVolumeClaim:
+        claimName: spark-pi-pvc
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    volumeMounts:
+      - name: spark-pi-deps
+        mountPath: /dependencies <i class="conum" data-value="8"></i><b>(8)</b>
+  executor:
+    cores: 1
+    instances: 3
+    memory: "512m"
+    volumeMounts:
+      - name: spark-pi-deps
+        mountPath: /dependencies <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Job python artifact (located in an S3 store)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Artifact class</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>S3 section, specifying the existing secret and S3 end-point (in this case, MinIO)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Credentials referencing a secretClass (not shown in is example)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Spark dependencies: the credentials provider (the user knows what is relevant here) plus dependencies needed to access external resources&#8230;&#8203;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>&#8230;&#8203;in this case, in an S3 store, accessed with the credentials defined in the secret</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>the name of the volume mount backed by a <code>PersistentVolumeClaim</code> that must be pre-existing</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>the path on the volume mount: this is referenced in the <code>sparkConf</code> section where the extra class path is defined for the driver and executors</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_scala_externally_located_artifact_accessed_with_job_arguments_provided_via_configuration_map"><a class="anchor" href="#_jvm_scala_externally_located_artifact_accessed_with_job_arguments_provided_via_configuration_map"></a>JVM (Scala): externally located artifact accessed with job arguments provided via configuration map</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-job-arguments <i class="conum" data-value="1"></i><b>(1)</b>
+data:
+  job-args.txt: |
+    s3a://nyc-tlc/trip data/yellow_tripdata_2021-07.csv <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: spark.stackable.tech/v1alpha1
+kind: SparkApplication
+metadata:
+  name: ny-tlc-report-configmap
+  namespace: default
+spec:
+  version: "1.0"
+  sparkImage: docker.stackable.tech/stackable/spark-k8s:3.3.0-stackable0.1.0
+  mode: cluster
+  mainApplicationFile: s3a://stackable-spark-k8s-jars/jobs/ny-tlc-report-1.1.0.jar <i class="conum" data-value="3"></i><b>(3)</b>
+  mainClass: tech.stackable.demo.spark.NYTLCReport
+  volumes:
+    - name: job-deps
+      persistentVolumeClaim:
+        claimName: pvc-ksv
+    - name: cm-job-arguments
+      configMap:
+        name: cm-job-arguments <i class="conum" data-value="4"></i><b>(4)</b>
+  args:
+    - "--input /arguments/job-args.txt" <i class="conum" data-value="5"></i><b>(5)</b>
+  sparkConf:
+    "spark.hadoop.fs.s3a.aws.credentials.provider": "org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider"
+    "spark.driver.extraClassPath": "/dependencies/jars/*"
+    "spark.executor.extraClassPath": "/dependencies/jars/*"
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies
+      - name: cm-job-arguments <i class="conum" data-value="6"></i><b>(6)</b>
+        mountPath: /arguments  <i class="conum" data-value="7"></i><b>(7)</b>
+  executor:
+    cores: 1
+    instances: 3
+    memory: "512m"
+    volumeMounts:
+      - name: job-deps
+        mountPath: /dependencies
+      - name: cm-job-arguments <i class="conum" data-value="6"></i><b>(6)</b>
+        mountPath: /arguments <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the configuration map</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Argument required by the job</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Job scala artifact that requires an input argument</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The volume backed by the configuration map</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The expected job argument, accessed via the mounted configuration map file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The name of the volume backed by the configuration map that will be mounted to the driver/executor</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>The mount location of the volume (this will contain a file <code>/arguments/job-args.txt</code>)</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_s3_bucket_specification"><a class="anchor" href="#_s3_bucket_specification"></a>S3 bucket specification</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can specify S3 connection details directly inside the <code>SparkApplication</code> specification or by referring to an external <code>S3Bucket</code> custom resource.</p>
+</div>
+<div class="paragraph">
+<p>To specify S3 connection details directly as part of the <code>SparkApplication</code> resource you add an inline bucket configuration as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">s3bucket:  <i class="conum" data-value="1"></i><b>(1)</b>
+  inline:
+    bucketName: my-bucket <i class="conum" data-value="2"></i><b>(2)</b>
+    connection:
+      inline:
+        host: test-minio <i class="conum" data-value="3"></i><b>(3)</b>
+        port: 9000 <i class="conum" data-value="4"></i><b>(4)</b>
+        accessStyle: Path
+        credentials:
+          secretClass: s3-credentials-class  <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Entry point for the bucket configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Bucket name.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Bucket host.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Optional bucket port.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Name of the <code>Secret</code> object expected to contain the following keys: <code>ACCESS_KEY_ID</code> and <code>SECRET_ACCESS_KEY</code></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It is also possible to configure the bucket connection details as a separate Kubernetes resource and only refer to that object from the <code>SparkApplication</code> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">s3bucket:
+  reference: my-bucket-resource <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the bucket resource with connection details.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The resource named <code>my-bucket-resource</code> is then defined as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: s3.stackable.tech/v1alpha1
+kind: S3Bucket
+metadata:
+  name: my-bucket-resource
+spec:
+  bucketName: my-bucket-name
+  connection:
+    inline:
+      host: test-minio
+      port: 9000
+      accessStyle: Path
+      credentials:
+        secretClass: minio-credentials-class</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has the advantage that bucket configuration can be shared across `SparkApplication`s and reduces the cost of updating these details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_crd_argument_coverage"><a class="anchor" href="#_crd_argument_coverage"></a>CRD argument coverage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below are listed the CRD fields that can be defined by the user:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">CRD field</th>
+<th class="tableblock halign-left valign-top">Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apiVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spark.stackable.tech/v1alpha1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kind</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SparkApplication</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>metadata.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Job name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1.0"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cluster</code> or <code>client</code>. Currently only <code>cluster</code> is supported</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.image</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User-supplied image containing spark-job dependencies that will be copied to the specified volume mount</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.sparkImage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spark image which will be deployed to driver and executor pods, which must contain spark environment needed by the job e.g. <code>docker.stackable.tech/stackable/spark-k8s:3.3.0-stackable0.1.0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.sparkImagePullPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional Enum (one of <code>Always</code>, <code>IfNotPresent</code> or <code>Never</code>) that determines the pull policy of the spark job image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.sparkImagePullSecrets</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional list of references to secrets in the same namespace to use for pulling any of the images used by a <code>SparkApplication</code> resource. Each reference has a single property (<code>name</code>) that must contain a reference to a valid secret</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.mainApplicationFile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The actual application file that will be called by <code>spark-submit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.mainClass</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The main class i.e. entry point for JVM artifacts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.args</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arguments passed directly to the job artifact</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.s3bucket</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket and connection specification. See the <a href="#_s3_bucket_specification">S3 bucket specification</a> for more details.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.sparkConf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A map of key/value strings that will be passed directly to <code>spark-submit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.deps.requirements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of python packages that will be installed via <code>pip</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.deps.packages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of packages that is passed directly to <code>spark-submit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.deps.excludePackages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of excluded packages that is passed directly to <code>spark-submit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.deps.repositories</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of repositories that is passed directly to <code>spark-submit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.volumes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of volumes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.volumes.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The volume name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.volumes.persistentVolumeClaim.claimName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The persistent volume claim backing the volume</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.cores</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of cores used by the driver (only in cluster mode)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.coreLimit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Total cores for all executors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.memory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specified memory for the driver</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.volumeMounts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of mounted volumes for the driver</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.volumeMounts.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of mount</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.volumeMounts.mountPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volume mount path</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.driver.nodeSelector</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A dictionary of labels to use for node selection when scheduling the driver N.B. this assumes there are no implicit node dependencies (e.g. <code>PVC</code>, <code>VolumeMount</code>) defined elsewhere.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.cores</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of cores for each executor</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.instances</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of executor instances launched for this job</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.memory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Memory specified for executor</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.volumeMounts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of mounted volumes for each executor</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.volumeMounts.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of mount</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.volumeMounts.mountPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volume mount path</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.executor.nodeSelector</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A dictionary of labels to use for node selection when scheduling the executors N.B. this assumes there are no implicit node dependencies (e.g. <code>PVC</code>, <code>VolumeMount</code>) defined elsewhere.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+  </div>
+</main>
+    </div>
+</div>
+<footer class="footer">
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>
